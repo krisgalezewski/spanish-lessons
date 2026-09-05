@@ -90,6 +90,8 @@
   .vocab-item .txt{font-size:0.94rem;}
   .vocab-item .txt .es{font-weight:600;color:var(--teal-dark);}
   .vocab-item .txt .en{color:var(--ink-soft);display:block;font-size:0.85rem;}
+  .vocab-item .vocab-answer{display:block;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);color:var(--terracotta);font-weight:600;font-size:0.88rem;}
+  .vocab-item .vocab-answer .en{display:inline;font-weight:400;}
   .vocab-item .btns{display:flex;align-items:center;}
 
   .btn{
@@ -142,9 +144,11 @@
   /* Context blocks: expressions / text / dialogue */
   .ctx-card{border-top:3px solid var(--gold);margin-top:26px;}
   .expr-list{display:grid;gap:8px;margin:10px 0 4px;}
-  .expr-item{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:9px 13px;background:#fbfaf6;}
+  .expr-item{border:1px solid var(--line);border-radius:8px;padding:9px 13px;background:#fbfaf6;}
   .expr-item .es{font-weight:600;color:var(--teal-dark);}
   .expr-item .en{color:var(--ink-soft);font-size:0.86rem;}
+  .expr-answer{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);color:var(--terracotta);font-weight:600;font-size:0.88rem;}
+  .expr-answer .en{font-weight:400;}
   .text-block p{margin:0;}
   .text-sentence{margin-right:3px;}
   .text-en{color:var(--ink-soft);font-size:0.9rem;margin-top:10px;font-style:italic;}
@@ -184,11 +188,6 @@
   <div class="card">
     <h3 style="margin-top:0;">On this page</h3>
     <table class="gtable" id="onThisPageTable"></table>
-  </div>
-  <div class="card">
-    <h3 style="margin-top:0;">🔊 Voice</h3>
-    <p style="margin-top:0;">Pick the clearest Spanish voice available in your browser — used only as a fallback for anything that doesn't have a pre-generated recording yet (quality varies by device; Chrome and Edge usually have the best selection).</p>
-    <select id="voiceSelect" style="font-family:'Work Sans',sans-serif;font-weight:600;padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);"></select>
   </div>
 </section>
 
@@ -329,6 +328,8 @@
     <h2>Preguntas — Question words <button class="say" data-text="Preguntas">🔊</button></h2>
     <div class="vocab-grid" id="questionGrid"></div>
     <div class="note">Spanish questions open with an upside-down question mark: <span class="es">¿Dónde vives?</span> <button class="say" data-text="¿Dónde vives?">🔊</button> — this signals a question is coming before you even reach the end.</div>
+    <h3>Full questions, with an answer for each</h3>
+    <div class="vocab-grid" id="questionExampleGrid"></div>
   </div>
   <div class="card">
     <h2>Adjetivos — Adjective agreement & position <button class="say" data-text="Adjetivos">🔊</button></h2>
@@ -550,26 +551,12 @@ function speakLive(text){
   const u = new SpeechSynthesisUtterance(text);
   u.lang='es-ES'; u.rate=0.88;
   const voices = window.speechSynthesis.getVoices();
-  const preferred = localStorage.getItem('preferredSpanishVoice');
-  let voice = voices.find(v=>v.name===preferred);
-  if(!voice) voice = voices.find(v=>v.lang.toLowerCase().startsWith('es') && /female|mujer|mónica|monica|paulina|lucia|elvira|helena|marisol/i.test(v.name));
+  let voice = voices.find(v=>v.lang.toLowerCase().startsWith('es') && /female|mujer|mónica|monica|paulina|lucia|elvira|helena|marisol/i.test(v.name));
   if(!voice) voice = voices.find(v=>v.lang.toLowerCase()==='es-es');
   if(!voice) voice = voices.find(v=>v.lang.toLowerCase().startsWith('es'));
   if(voice) u.voice = voice;
   window.speechSynthesis.speak(u);
 }
-function populateVoices(){
-  const sel = document.getElementById('voiceSelect');
-  if(!sel || !('speechSynthesis' in window)) return;
-  const voices = window.speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith('es'));
-  sel.innerHTML='';
-  if(voices.length===0){ const o=document.createElement('option'); o.textContent='(loading voices…)'; sel.appendChild(o); return; }
-  voices.forEach(v=>{ const o=document.createElement('option'); o.value=v.name; o.textContent=v.name+' ('+v.lang+')'; sel.appendChild(o); });
-  const saved = localStorage.getItem('preferredSpanishVoice');
-  if(saved && voices.some(v=>v.name===saved)) sel.value = saved;
-}
-if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = populateVoices; populateVoices(); }
-document.getElementById('voiceSelect').addEventListener('change', e=>localStorage.setItem('preferredSpanishVoice', e.target.value));
 
 /* Delegated handler: any <button class="say" data-text="..."> anywhere works,
    including ones inserted dynamically (context blocks, time widget, etc). */
@@ -617,7 +604,8 @@ function renderVocabGrid(elId, items){
   items.forEach(item=>{
     const div = document.createElement('div');
     div.className='vocab-item';
-    div.innerHTML = `<span class="txt"><span class="es">${item.es}</span><span class="en">${item.en}</span></span>
+    const answerHtml = item.answer ? `<span class="vocab-answer">→ ${item.answer.es} <button class="say sm" data-text="${item.answer.es}">🔊</button><span class="en">(${item.answer.en})</span></span>` : '';
+    div.innerHTML = `<span class="txt"><span class="es">${item.es}</span><span class="en">${item.en}</span>${answerHtml}</span>
       <span class="btns"><button class="say" data-text="${item.es}">🔊</button><button class="bm ${saved.includes(item.es)?'saved':''}" data-es="${item.es}" data-en="${item.en}">🔖</button></span>`;
     grid.appendChild(div);
   });
@@ -762,16 +750,26 @@ const QUESTIONS = [
   {es:'¿Dónde?', en:'Where?'}, {es:'¿Cómo?', en:'How?'}, {es:'¿Por qué?', en:'Why?'},
   {es:'¿Cuánto/a?', en:'How much?'}, {es:'¿Cuál?', en:'Which?'},
 ];
+const QUESTION_EXAMPLES = [
+  {es:'¿Qué haces?', en:'What are you doing?', answer:{es:'Trabajo.', en:'I work / I am working.'}},
+  {es:'¿Quién es?', en:'Who is it?', answer:{es:'Es mi hermano.', en:'It\'s my brother.'}},
+  {es:'¿Cuándo llegas?', en:'When are you arriving?', answer:{es:'Llego a las cinco.', en:"I'm arriving at five."}},
+  {es:'¿Dónde vives?', en:'Where do you live?', answer:{es:'Vivo en Poznań.', en:'I live in Poznań.'}},
+  {es:'¿Cómo estás?', en:'How are you?', answer:{es:'Estoy bien, gracias.', en:"I'm fine, thanks."}},
+  {es:'¿Por qué estudias español?', en:'Why do you study Spanish?', answer:{es:'Porque mi familia es de España.', en:'Because my family is from Spain.'}},
+  {es:'¿Cuánto cuesta esto?', en:'How much does this cost?', answer:{es:'Cuesta diez euros.', en:'It costs ten euros.'}},
+  {es:'¿Cuál prefieres?', en:'Which one do you prefer?', answer:{es:'Prefiero el azul.', en:'I prefer the blue one.'}},
+];
 const PHRASES = [
-  {es:'¿Qué tal?', en:"How's it going? (informal)"},
+  {es:'¿Qué tal?', en:"How's it going? (informal)", answer:{es:'Bien, ¿y tú?', en:"Fine, and you?"}},
   {es:'Mucho gusto.', en:'Nice to meet you.'},
-  {es:'¿De dónde eres?', en:'Where are you from? (informal)'},
-  {es:'¿De dónde es usted?', en:'Where are you from? (formal)'},
+  {es:'¿De dónde eres?', en:'Where are you from? (informal)', answer:{es:'Soy de Polonia.', en:"I'm from Poland."}},
+  {es:'¿De dónde es usted?', en:'Where are you from? (formal)', answer:{es:'Soy de Polonia.', en:"I'm from Poland."}},
   {es:'No entiendo.', en:"I don't understand."},
-  {es:'¿Puede repetir, por favor?', en:'Could you repeat that, please? (formal)'},
-  {es:'¿Cuánto cuesta?', en:'How much does it cost?'},
+  {es:'¿Puede repetir, por favor?', en:'Could you repeat that, please? (formal)', answer:{es:'Sí, claro.', en:'Yes, of course.'}},
+  {es:'¿Cuánto cuesta?', en:'How much does it cost?', answer:{es:'Cuesta diez euros.', en:'It costs ten euros.'}},
   {es:'No hablo mucho español todavía.', en:"I don't speak much Spanish yet."},
-  {es:'¿Hablas inglés?', en:'Do you speak English?'},
+  {es:'¿Hablas inglés?', en:'Do you speak English?', answer:{es:'Sí, hablo un poco.', en:'Yes, I speak a little.'}},
   {es:'Perdón, no entendí.', en:"Sorry, I didn't understand."},
   {es:'Encantado de conocerte.', en:'Pleased to meet you.'},
 ];
@@ -855,6 +853,7 @@ function renderSentenceList(elId, sentences){
 
 renderVocabGrid('vowelGrid', VOWELS);
 renderVocabGrid('questionGrid', QUESTIONS);
+renderVocabGrid('questionExampleGrid', QUESTION_EXAMPLES);
 renderVocabGrid('phraseGrid', PHRASES);
 renderVocabGrid('numberGrid', NUMBERS);
 renderVocabGrid('teenGrid', TEENS);
@@ -875,9 +874,9 @@ renderGlossary();
 const SECTION_EXTRAS = {
   pron: {
     expresiones: [
-      {es:'¿Cómo se dice esto en español?', en:'How do you say this in Spanish?'},
-      {es:'¿Cómo se escribe tu nombre?', en:'How do you spell your name?'},
-      {es:'¿Puedes repetir eso, por favor?', en:'Can you repeat that, please?'},
+      {es:'¿Cómo se dice esto en español?', en:'How do you say this in Spanish?', answer:{es:'Se dice "gracias".', en:'It\'s said "gracias".'}},
+      {es:'¿Cómo se escribe tu nombre?', en:'How do you spell your name?', answer:{es:'Se escribe A-N-A.', en:"It's spelled A-N-A."}},
+      {es:'¿Puedes repetir eso, por favor?', en:'Can you repeat that, please?', answer:{es:'Sí, claro.', en:'Yes, of course.'}},
       {es:'Habla más despacio, por favor.', en:'Speak more slowly, please.'},
       {es:'No sé pronunciar esta palabra.', en:"I don't know how to pronounce this word."},
     ],
@@ -897,9 +896,9 @@ const SECTION_EXTRAS = {
   },
   genero: {
     expresiones: [
-      {es:'¿Es masculino o femenino?', en:'Is it masculine or feminine?'},
+      {es:'¿Es masculino o femenino?', en:'Is it masculine or feminine?', answer:{es:'Es masculino.', en:'It\'s masculine.'}},
       {es:'No sé el género de esta palabra.', en:"I don't know the gender of this word."},
-      {es:'¿Se dice "el" o "la"?', en:'Do you say "el" or "la"?'},
+      {es:'¿Se dice "el" o "la"?', en:'Do you say "el" or "la"?', answer:{es:'Se dice "la", porque "mesa" es femenina.', en:'You say "la", because "mesa" is feminine.'}},
     ],
     texto: {
       es: ['En español, cada sustantivo tiene un género: masculino o femenino.', "Por ejemplo, 'el libro' es masculino y 'la mesa' es femenina.", 'A veces el género no es lógico, así que hay que aprenderlo con cada palabra nueva.'],
@@ -917,9 +916,9 @@ const SECTION_EXTRAS = {
   },
   pronombres: {
     expresiones: [
-      {es:'¿Quién eres tú?', en:'Who are you?'},
-      {es:'¿De dónde es usted?', en:'Where are you from? (formal)'},
-      {es:'¿Cómo estás hoy?', en:'How are you today?'},
+      {es:'¿Quién eres tú?', en:'Who are you?', answer:{es:'Soy Ana.', en:"I'm Ana."}},
+      {es:'¿De dónde es usted?', en:'Where are you from? (formal)', answer:{es:'Soy de Polonia.', en:"I'm from Poland."}},
+      {es:'¿Cómo estás hoy?', en:'How are you today?', answer:{es:'Estoy bien, gracias. ¿Y tú?', en:"I'm fine, thanks. And you?"}},
       {es:'Estoy un poco cansado.', en:"I'm a bit tired."},
     ],
     texto: {
@@ -938,9 +937,9 @@ const SECTION_EXTRAS = {
   },
   presente: {
     expresiones: [
-      {es:'¿Qué haces los fines de semana?', en:'What do you do on weekends?'},
+      {es:'¿Qué haces los fines de semana?', en:'What do you do on weekends?', answer:{es:'Descanso y veo a mis amigos.', en:'I rest and see my friends.'}},
       {es:'Tengo que trabajar mañana.', en:'I have to work tomorrow.'},
-      {es:'¿Quieres comer algo?', en:'Do you want to eat something?'},
+      {es:'¿Quieres comer algo?', en:'Do you want to eat something?', answer:{es:'Sí, quiero comer algo.', en:'Yes, I want to eat something.'}},
       {es:'Voy a estudiar español.', en:"I'm going to study Spanish."},
     ],
     texto: {
@@ -959,10 +958,10 @@ const SECTION_EXTRAS = {
   },
   estructuras: {
     expresiones: [
-      {es:'¿Cuál es tu color favorito?', en:"What's your favorite color?"},
-      {es:'¿Cuántos años tienes?', en:'How old are you?'},
+      {es:'¿Cuál es tu color favorito?', en:"What's your favorite color?", answer:{es:'Mi color favorito es el azul.', en:'My favorite color is blue.'}},
+      {es:'¿Cuántos años tienes?', en:'How old are you?', answer:{es:'Tengo treinta y cinco años.', en:"I'm thirty-five years old."}},
       {es:'Mi casa es más grande que la tuya.', en:'My house is bigger than yours.'},
-      {es:'¿De quién es este libro?', en:'Whose book is this?'},
+      {es:'¿De quién es este libro?', en:'Whose book is this?', answer:{es:'Es de mi hermana.', en:"It's my sister's."}},
     ],
     texto: {
       es: ['Mi hermana tiene una casa muy bonita y grande.', 'Sus vecinos son simpáticos y su jardín tiene flores de muchos colores.', 'Nuestra familia visita su casa cada verano.'],
@@ -980,7 +979,7 @@ const SECTION_EXTRAS = {
   },
   frases: {
     expresiones: [
-      {es:'¿Hablas inglés?', en:'Do you speak English?'},
+      {es:'¿Hablas inglés?', en:'Do you speak English?', answer:{es:'Sí, hablo un poco de inglés.', en:'Yes, I speak a little English.'}},
       {es:'Perdón, no entendí.', en:"Sorry, I didn't understand."},
       {es:'Encantado de conocerte.', en:'Pleased to meet you.'},
     ],
@@ -1000,9 +999,9 @@ const SECTION_EXTRAS = {
   },
   numeros: {
     expresiones: [
-      {es:'¿Qué hora es?', en:'What time is it?'},
-      {es:'¿Qué día es hoy?', en:"What day is it today?"},
-      {es:'¿Cuál es la fecha de hoy?', en:"What's today's date?"},
+      {es:'¿Qué hora es?', en:'What time is it?', answer:{es:'Son las tres y media.', en:"It's half past three."}},
+      {es:'¿Qué día es hoy?', en:"What day is it today?", answer:{es:'Hoy es martes.', en:"Today is Tuesday."}},
+      {es:'¿Cuál es la fecha de hoy?', en:"What's today's date?", answer:{es:'Hoy es el cinco de septiembre.', en:"Today is September fifth."}},
       {es:'Mi cumpleaños es en marzo.', en:'My birthday is in March.'},
     ],
     texto: {
@@ -1021,9 +1020,9 @@ const SECTION_EXTRAS = {
   },
   colores: {
     expresiones: [
-      {es:'¿De qué color es esto?', en:'What color is this?'},
+      {es:'¿De qué color es esto?', en:'What color is this?', answer:{es:'Es azul.', en:"It's blue."}},
       {es:'Mi color favorito es el azul.', en:'My favorite color is blue.'},
-      {es:'¿Te gusta el rojo o el verde?', en:'Do you like red or green?'},
+      {es:'¿Te gusta el rojo o el verde?', en:'Do you like red or green?', answer:{es:'Me gusta más el verde.', en:'I like green more.'}},
     ],
     texto: {
       es: ['A Sofía le encanta el color rosa.', 'Su mochila es rosa, su bicicleta es rosa y hasta su gato tiene un collar rosa.', 'Su hermano prefiere el azul y el negro.'],
@@ -1041,9 +1040,9 @@ const SECTION_EXTRAS = {
   },
   animales: {
     expresiones: [
-      {es:'¿Qué animal es tu favorito?', en:'What is your favorite animal?'},
+      {es:'¿Qué animal es tu favorito?', en:'What is your favorite animal?', answer:{es:'Mi animal favorito es el perro.', en:'My favorite animal is the dog.'}},
       {es:'Tengo un perro y un gato en casa.', en:'I have a dog and a cat at home.'},
-      {es:'¿Te dan miedo las arañas?', en:'Are you scared of spiders?'},
+      {es:'¿Te dan miedo las arañas?', en:'Are you scared of spiders?', answer:{es:'Sí, un poco.', en:'Yes, a little.'}},
     ],
     texto: {
       es: ['En la granja de mis abuelos hay muchos animales: vacas, ovejas, gallinas y un caballo muy viejo.', 'Por las mañanas, el gallo canta y despierta a todo el mundo.'],
@@ -1061,7 +1060,7 @@ const SECTION_EXTRAS = {
   },
   familia: {
     expresiones: [
-      {es:'¿Cuántos hermanos tienes?', en:'How many siblings do you have?'},
+      {es:'¿Cuántos hermanos tienes?', en:'How many siblings do you have?', answer:{es:'Tengo un hermano y una hermana.', en:'I have one brother and one sister.'}},
       {es:'Vivo con mis padres y mi hermana.', en:'I live with my parents and my sister.'},
       {es:'Mi familia es muy grande.', en:'My family is very big.'},
     ],
@@ -1081,9 +1080,9 @@ const SECTION_EXTRAS = {
   },
   comida: {
     expresiones: [
-      {es:'¿Qué quieres comer?', en:'What do you want to eat?'},
+      {es:'¿Qué quieres comer?', en:'What do you want to eat?', answer:{es:'Quiero comer pizza.', en:'I want to eat pizza.'}},
       {es:'Tengo mucha hambre.', en:"I'm very hungry."},
-      {es:'¿Te gusta la comida picante?', en:'Do you like spicy food?'},
+      {es:'¿Te gusta la comida picante?', en:'Do you like spicy food?', answer:{es:'Sí, me encanta.', en:'Yes, I love it.'}},
     ],
     texto: {
       es: ['Todos los domingos, mi familia prepara una comida especial: sopa, pollo con arroz y, de postre, fruta fresca.', 'A mi hermano le encanta el pan con queso.'],
@@ -1105,9 +1104,10 @@ function renderExtras(tabId){
   const data = SECTION_EXTRAS[tabId];
   const container = document.getElementById('ctx-'+tabId);
   if(!data || !container) return;
-  const exprHtml = data.expresiones.map(x=>`
-    <div class="expr-item"><span class="es">${x.es}</span> <button class="say sm" data-text="${x.es}">🔊</button><span class="en">${x.en}</span></div>
-  `).join('');
+  const exprHtml = data.expresiones.map(x=>{
+    const answerHtml = x.answer ? `<div class="expr-answer">→ ${x.answer.es} <button class="say sm" data-text="${x.answer.es}">🔊</button><span class="en">(${x.answer.en})</span></div>` : '';
+    return `<div class="expr-item"><div><span class="es">${x.es}</span> <button class="say sm" data-text="${x.es}">🔊</button><span class="en">${x.en}</span>${answerHtml}</div></div>`;
+  }).join('');
   const textoHtml = data.texto.es.map(s=>`<span class="text-sentence">${s} <button class="say sm" data-text="${s}">🔊</button></span>`).join(' ');
   const dialogoHtml = data.dialogo.lines.map(l=>`
     <div class="dial-line"><span class="dial-who">${l.who}:</span>

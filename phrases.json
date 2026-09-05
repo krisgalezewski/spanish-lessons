@@ -24,6 +24,10 @@
     "es": "Animales"
   },
   {
+    "file": "bien-y-tu",
+    "es": "Bien, ¿y tú?"
+  },
+  {
     "file": "bienvenido",
     "es": "Bienvenido"
   },
@@ -60,12 +64,20 @@
     "es": "Comida"
   },
   {
+    "file": "cuesta-diez-euros",
+    "es": "Cuesta diez euros."
+  },
+  {
     "file": "de-nada",
     "es": "De nada"
   },
   {
     "file": "desayuno-pan-con-queso",
     "es": "Desayuno pan con queso."
+  },
+  {
+    "file": "descanso-y-veo-a-mis-amigos",
+    "es": "Descanso y veo a mis amigos."
   },
   {
     "file": "dias-y-meses",
@@ -104,8 +116,16 @@
     "es": "Es alto."
   },
   {
+    "file": "es-azul",
+    "es": "Es azul."
+  },
+  {
     "file": "es-de-polonia",
     "es": "Es de Polonia."
+  },
+  {
+    "file": "es-de-mi-hermana",
+    "es": "Es de mi hermana."
   },
   {
     "file": "es-de-mi-vecino-es-muy-rapido",
@@ -120,8 +140,24 @@
     "es": "Es la una."
   },
   {
+    "file": "es-masculino",
+    "es": "Es masculino."
+  },
+  {
+    "file": "es-mi-hermano",
+    "es": "Es mi hermano."
+  },
+  {
     "file": "estoy-bien",
     "es": "Estoy bien"
+  },
+  {
+    "file": "estoy-bien-gracias",
+    "es": "Estoy bien, gracias."
+  },
+  {
+    "file": "estoy-bien-gracias-y-tu",
+    "es": "Estoy bien, gracias. ¿Y tú?"
   },
   {
     "file": "estoy-cansado",
@@ -188,6 +224,14 @@
     "es": "Hola, ¿cómo te llamas?"
   },
   {
+    "file": "hoy-es-el-cinco-de-septiembre",
+    "es": "Hoy es el cinco de septiembre."
+  },
+  {
+    "file": "hoy-es-martes",
+    "es": "Hoy es martes."
+  },
+  {
     "file": "la-arana-tiene-ocho-patas",
     "es": "La araña tiene ocho patas."
   },
@@ -208,6 +252,10 @@
     "es": "La mía es pequeña, solo mi madre y yo."
   },
   {
+    "file": "llego-a-las-cinco",
+    "es": "Llego a las cinco."
+  },
+  {
     "file": "los-pajaros-cantan-por-la-manana",
     "es": "Los pájaros cantan por la mañana."
   },
@@ -220,8 +268,20 @@
     "es": "Me gusta el verde. ¿Y el tuyo?"
   },
   {
+    "file": "me-gusta-mas-el-verde",
+    "es": "Me gusta más el verde."
+  },
+  {
     "file": "me-llamo-marek-y-tu",
     "es": "Me llamo Marek. ¿Y tú?"
+  },
+  {
+    "file": "me-llamo-sofia",
+    "es": "Me llamo Sofía."
+  },
+  {
+    "file": "mi-animal-favorito-es-el-perro",
+    "es": "Mi animal favorito es el perro."
   },
   {
     "file": "mi-casa-es-mas-grande-que-la-tuya",
@@ -288,6 +348,10 @@
     "es": "No te preocupes, con práctica sale bien."
   },
   {
+    "file": "no-te-preocupes-te-explico",
+    "es": "No te preocupes, te explico."
+  },
+  {
     "file": "numeros",
     "es": "Números"
   },
@@ -308,8 +372,16 @@
     "es": "Por favor"
   },
   {
+    "file": "porque-mi-familia-es-de-espana",
+    "es": "Porque mi familia es de España."
+  },
+  {
     "file": "posesivos",
     "es": "Posesivos"
+  },
+  {
+    "file": "prefiero-el-azul",
+    "es": "Prefiero el azul."
   },
   {
     "file": "prefiero-una-mesa-pequena-el-apartamento-es-pequeno",
@@ -332,8 +404,24 @@
     "es": "Pronunciación"
   },
   {
+    "file": "quiero-comer-pizza",
+    "es": "Quiero comer pizza."
+  },
+  {
     "file": "quiero-pizza-y-una-ensalada-y-tu",
     "es": "Quiero pizza y una ensalada. ¿Y tú?"
+  },
+  {
+    "file": "se-dice-gracias",
+    "es": "Se dice \"gracias\"."
+  },
+  {
+    "file": "se-dice-la-porque-mesa-es-femenina",
+    "es": "Se dice \"la\", porque \"mesa\" es femenina."
+  },
+  {
+    "file": "se-escribe-a-n-a",
+    "es": "Se escribe A-N-A."
   },
   {
     "file": "se-pronuncia-con-una-erre-fuerte-es-la-palabra-perro",
@@ -360,12 +448,20 @@
     "es": "Son las tres."
   },
   {
+    "file": "soy-ana",
+    "es": "Soy Ana."
+  },
+  {
     "file": "soy-de-mexico-y-tu",
     "es": "Soy de México. ¿Y tú?"
   },
   {
     "file": "soy-de-polonia-pero-ahora-estoy-en-espana",
     "es": "Soy de Polonia, pero ahora estoy en España."
+  },
+  {
+    "file": "soy-de-polonia",
+    "es": "Soy de Polonia."
   },
   {
     "file": "soy-profesor",
@@ -376,12 +472,44 @@
     "es": "Sí"
   },
   {
+    "file": "si-aqui-tienes",
+    "es": "Sí, aquí tienes."
+  },
+  {
+    "file": "si-claro",
+    "es": "Sí, claro."
+  },
+  {
     "file": "si-el-amarillo-es-como-el-sol",
     "es": "Sí, el amarillo es como el sol."
   },
   {
+    "file": "si-hablo-un-poco-de-ingles",
+    "es": "Sí, hablo un poco de inglés."
+  },
+  {
+    "file": "si-hablo-un-poco",
+    "es": "Sí, hablo un poco."
+  },
+  {
+    "file": "si-me-encanta",
+    "es": "Sí, me encanta."
+  },
+  {
+    "file": "si-puedes",
+    "es": "Sí, puedes."
+  },
+  {
+    "file": "si-quiero-comer-algo",
+    "es": "Sí, quiero comer algo."
+  },
+  {
     "file": "si-tengo-dos-gatos-y-un-pez-y-tu",
     "es": "Sí, tengo dos gatos y un pez. ¿Y tú?"
+  },
+  {
+    "file": "si-un-poco",
+    "es": "Sí, un poco."
   },
   {
     "file": "tenemos-una-mesa-perfecta-para-ti",
@@ -408,6 +536,14 @@
     "es": "Tengo que trabajar mañana."
   },
   {
+    "file": "tengo-treinta-y-cinco-anos",
+    "es": "Tengo treinta y cinco años."
+  },
+  {
+    "file": "tengo-un-hermano-y-una-hermana",
+    "es": "Tengo un hermano y una hermana."
+  },
+  {
     "file": "tengo-un-perro-y-un-gato-en-casa",
     "es": "Tengo un perro y un gato en casa."
   },
@@ -416,8 +552,16 @@
     "es": "Tiene dos coches y una moto pequeña."
   },
   {
+    "file": "trabajo",
+    "es": "Trabajo."
+  },
+  {
     "file": "vivo-con-mis-padres-y-mi-hermana",
     "es": "Vivo con mis padres y mi hermana."
+  },
+  {
+    "file": "vivo-en-poznan",
+    "es": "Vivo en Poznań."
   },
   {
     "file": "voy-a-comer",
@@ -1428,6 +1572,10 @@
     "es": "¡Buena suerte con la limpieza!"
   },
   {
+    "file": "hasta-luego",
+    "es": "¡Hasta luego!"
+  },
+  {
     "file": "que-bonito-a-mi-me-encantan-los-perros",
     "es": "¡Qué bonito! A mí me encantan los perros."
   },
@@ -1444,8 +1592,16 @@
     "es": "¿Cuál es tu color favorito?"
   },
   {
+    "file": "cual-prefieres",
+    "es": "¿Cuál prefieres?"
+  },
+  {
     "file": "cual",
     "es": "¿Cuál?"
+  },
+  {
+    "file": "cuando-llegas",
+    "es": "¿Cuándo llegas?"
   },
   {
     "file": "cuando",
@@ -1454,6 +1610,10 @@
   {
     "file": "cuantas-personas-hay-en-tu-familia",
     "es": "¿Cuántas personas hay en tu familia?"
+  },
+  {
+    "file": "cuanto-cuesta-esto",
+    "es": "¿Cuánto cuesta esto?"
   },
   {
     "file": "cuanto-cuesta",
@@ -1476,6 +1636,10 @@
     "es": "¿Cuántos hermanos tienes?"
   },
   {
+    "file": "como-esta-usted",
+    "es": "¿Cómo está usted?"
+  },
+  {
     "file": "como-estas-hoy",
     "es": "¿Cómo estás hoy?"
   },
@@ -1492,8 +1656,16 @@
     "es": "¿Cómo se escribe tu nombre?"
   },
   {
+    "file": "como-se-llama-usted",
+    "es": "¿Cómo se llama usted?"
+  },
+  {
     "file": "como-se-pronuncia-esta-palabra",
     "es": "¿Cómo se pronuncia esta palabra?"
+  },
+  {
+    "file": "como-te-llamas",
+    "es": "¿Cómo te llamas?"
   },
   {
     "file": "de-donde-eres-tomas",
@@ -1536,6 +1708,18 @@
     "es": "¿Hablas inglés?"
   },
   {
+    "file": "me-ayudas-por-favor",
+    "es": "¿Me ayudas, por favor?"
+  },
+  {
+    "file": "me-puede-ayudar-por-favor",
+    "es": "¿Me puede ayudar, por favor?"
+  },
+  {
+    "file": "por-que-estudias-espanol",
+    "es": "¿Por qué estudias español?"
+  },
+  {
     "file": "por-que",
     "es": "¿Por qué?"
   },
@@ -1552,12 +1736,24 @@
     "es": "¿Puedes repetir eso, por favor?"
   },
   {
+    "file": "puedo-ir-al-bano",
+    "es": "¿Puedo ir al baño?"
+  },
+  {
+    "file": "puedo-tener-un-poco-de-agua-por-favor",
+    "es": "¿Puedo tener un poco de agua, por favor?"
+  },
+  {
     "file": "quieres-comer-algo",
     "es": "¿Quieres comer algo?"
   },
   {
     "file": "quien-eres-tu",
     "es": "¿Quién eres tú?"
+  },
+  {
+    "file": "quien-es",
+    "es": "¿Quién es?"
   },
   {
     "file": "quien",
@@ -1578,6 +1774,10 @@
   {
     "file": "que-haces-los-fines-de-semana",
     "es": "¿Qué haces los fines de semana?"
+  },
+  {
+    "file": "que-haces",
+    "es": "¿Qué haces?"
   },
   {
     "file": "que-hora-es",

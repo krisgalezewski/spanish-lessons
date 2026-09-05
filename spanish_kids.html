@@ -118,15 +118,6 @@
   .mode-chip .e{font-size:1.8rem;display:block;margin-bottom:4px;}
   .mode-chip:hover{border-color:var(--marigold);}
 
-  .voice-row{
-    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-    background:var(--card);border:2px dashed var(--sky);border-radius:16px;
-    padding:12px 16px;margin-bottom:20px;font-size:0.92rem;
-  }
-  .voice-row select{
-    font-family:'Nunito',sans-serif;font-weight:700;padding:6px 10px;border-radius:10px;border:2px solid var(--line);background:#fff;
-  }
-
   h2.section-title{font-size:1.6rem;margin:6px 0 4px;}
   p.section-sub{color:var(--ink-soft);margin:0 0 18px;}
 
@@ -217,6 +208,31 @@
   .puzzle-example .answer .say{background:rgba(255,255,255,0.3);width:26px;height:26px;font-size:0.85rem;}
   .puzzle-example .means{color:var(--ink-soft);font-weight:500;font-size:0.9rem;}
 
+  /* Phrase book (Frases) */
+  .phrase-card{
+    background:var(--card);border:3px solid var(--line);border-radius:20px;
+    padding:16px 18px;margin-bottom:14px;
+  }
+  .phrase-main{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .phrase-main .es{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1.15rem;color:var(--ink);}
+  .phrase-main .en{color:var(--ink-soft);font-size:0.92rem;display:block;}
+  .register-tag{
+    font-family:'Baloo 2',sans-serif;font-weight:700;font-size:0.72rem;
+    padding:3px 10px;border-radius:999px;white-space:nowrap;
+  }
+  .register-tag.informal{background:#e6f4fb;color:#1c6f96;}
+  .register-tag.formal{background:#fbeee0;color:#a35a1f;}
+  .phrase-pair{
+    margin-top:10px;padding-top:10px;border-top:2px dashed var(--line);
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:0.95rem;
+  }
+  .phrase-pair .lbl{font-weight:800;color:var(--ink-soft);font-size:0.82rem;}
+  .phrase-answer{
+    margin-top:10px;background:#F0F8EC;border-radius:12px;padding:9px 13px;
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:0.95rem;
+  }
+  .phrase-answer .arrow{color:var(--grass);font-weight:800;}
+
   footer{text-align:center;color:var(--ink-soft);font-size:0.85rem;padding:30px 5vw 0;}
   footer a{text-decoration:underline;}
 
@@ -249,14 +265,9 @@
         <div class="mode-chip" data-goto="animales"><span class="e">🐶</span>Animales</div>
         <div class="mode-chip" data-goto="familia"><span class="e">👪</span>Familia</div>
         <div class="mode-chip" data-goto="comida"><span class="e">🍎</span>Comida</div>
+        <div class="mode-chip" data-goto="frasario"><span class="e">📖</span>Frases</div>
         <div class="mode-chip" data-goto="juego"><span class="e">🎮</span>Game</div>
       </div>
-    </div>
-
-    <div class="voice-row">
-      🔊 <strong>Voice:</strong>
-      <select id="voiceSelect"></select>
-      <span style="color:var(--ink-soft);">— pick the clearest Spanish voice your browser has.</span>
     </div>
   </section>
 
@@ -319,6 +330,12 @@
     <h2 class="section-title">🍎 Comida — Food</h2>
     <p class="section-sub">Yummy words for lunchtime.</p>
     <div class="grid" id="grid-comida"></div>
+  </section>
+
+  <section class="panel" data-panel="frasario">
+    <h2 class="section-title">📖 Frases — A few things to actually say</h2>
+    <p class="section-sub">Short and useful — a question, its answer, and (when it matters) the polite version to use with grown-ups you don't know well.</p>
+    <div id="phraseBookList"></div>
   </section>
 
   <section class="panel" data-panel="juego">
@@ -403,6 +420,86 @@ const DATA = {
   ],
 };
 
+/* ---------------- PHRASE BOOK (Frases) ----------------
+   A short, kid-sized set of expressions + questions + the answer you'd
+   actually give. Where Spanish uses a different word for talking to a
+   friend/kid (informal, "tú") versus an adult you don't know well
+   (formal, "usted"), both versions are shown together. */
+const PHRASE_BOOK = [
+  {
+    es:'¡Hola!', en:'Hi!', register:'informal',
+    pair:{es:'Buenos días', en:'Good morning (more formal, polite with any adult)'},
+  },
+  {
+    es:'¿Cómo estás?', en:'How are you? (to a friend or another kid)', register:'informal',
+    pair:{es:'¿Cómo está usted?', en:'How are you? (to an adult you just met)'},
+    answer:{es:'Estoy bien, gracias.', en:"I'm fine, thank you."},
+  },
+  {
+    es:'¿Cómo te llamas?', en:"What's your name? (to a friend or kid)", register:'informal',
+    pair:{es:'¿Cómo se llama usted?', en:"What's your name? (to an adult)"},
+    answer:{es:'Me llamo Sofía.', en:'My name is Sofía.'},
+  },
+  {
+    es:'Por favor', en:'Please', register:null,
+  },
+  {
+    es:'Gracias', en:'Thank you', register:null,
+    answer:{es:'De nada.', en:"You're welcome."},
+  },
+  {
+    es:'¿Puedo ir al baño?', en:'Can I go to the bathroom?', register:'informal',
+    answer:{es:'Sí, puedes.', en:'Yes, you can.'},
+  },
+  {
+    es:'¿Me ayudas, por favor?', en:'Will you help me, please? (to a friend or kid)', register:'informal',
+    pair:{es:'¿Me puede ayudar, por favor?', en:'Will you help me, please? (to an adult)'},
+    answer:{es:'Sí, claro.', en:'Yes, of course.'},
+  },
+  {
+    es:'No entiendo.', en:"I don't understand.", register:null,
+    answer:{es:'No te preocupes, te explico.', en:"Don't worry, I'll explain."},
+  },
+  {
+    es:'¿Puedo tener un poco de agua, por favor?', en:'Can I have a little water, please?', register:'informal',
+    answer:{es:'Sí, aquí tienes.', en:'Yes, here you go.'},
+  },
+  {
+    es:'¡Hasta luego!', en:'See you later!', register:null,
+  },
+];
+
+function renderPhraseBook(){
+  const wrap = document.getElementById('phraseBookList');
+  if(!wrap) return;
+  wrap.innerHTML = PHRASE_BOOK.map(item=>{
+    const tag = item.register ? `<span class="register-tag ${item.register}">${item.register==='informal' ? '😎 informal' : '🎩 formal'}</span>` : '';
+    const pairHtml = item.pair ? `
+      <div class="phrase-pair">
+        <span class="lbl">${item.register==='informal' ? '🎩 With an adult:' : '😎 With a friend:'}</span>
+        <span class="es">${item.pair.es}</span>
+        <button class="say" data-text="${item.pair.es}">🔊</button>
+        <span class="en">(${item.pair.en})</span>
+      </div>` : '';
+    const answerHtml = item.answer ? `
+      <div class="phrase-answer">
+        <span class="arrow">→</span>
+        <span class="es">${item.answer.es}</span>
+        <button class="say" data-text="${item.answer.es}">🔊</button>
+        <span class="en">(${item.answer.en})</span>
+      </div>` : '';
+    return `
+      <div class="phrase-card">
+        <div class="phrase-main">
+          <div><span class="es">${item.es}</span> <button class="say" data-text="${item.es}">🔊</button><span class="en">${item.en}</span></div>
+          ${tag}
+        </div>
+        ${pairHtml}
+        ${answerHtml}
+      </div>`;
+  }).join('');
+}
+
 /* ---------------- STARS / FAVORITES (localStorage) ---------------- */
 const STAR_KEY = 'kidSpanishStars';
 const FAV_KEY = 'kidSpanishFavorites';
@@ -417,29 +514,9 @@ function toggleFav(es){
   renderAllGrids();
 }
 
-/* ---------------- AUDIO (Web Speech API) ----------------
-   Kept in one function so it can be swapped for Google Cloud
-   TTS later without touching the rest of the page. */
-function populateVoices(){
-  const sel = document.getElementById('voiceSelect');
-  if(!sel || !('speechSynthesis' in window)) return;
-  const voices = window.speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith('es'));
-  const current = sel.value;
-  sel.innerHTML = '';
-  if(voices.length===0){
-    const opt=document.createElement('option'); opt.textContent='(loading voices…)'; sel.appendChild(opt);
-    return;
-  }
-  voices.forEach(v=>{
-    const opt = document.createElement('option');
-    opt.value = v.name;
-    opt.textContent = v.name + ' (' + v.lang + ')';
-    sel.appendChild(opt);
-  });
-  const saved = localStorage.getItem('preferredSpanishVoice');
-  if(saved && voices.some(v=>v.name===saved)) sel.value = saved;
-  else if(current) sel.value = current;
-}
+/* ---------------- AUDIO ----------------
+   Kept in one function so it can be swapped for a different source later
+   without touching the rest of the page. */
 /* Turn Spanish text into the same filename generate_audio.py would use.
    Keep this in sync with slugify() in generate_audio.py. */
 function slugify(text){
@@ -453,7 +530,8 @@ function slugify(text){
 }
 /* speak(): tries a pre-generated Google Cloud TTS mp3 first (audio/es/<slug>.mp3);
    if it's missing or fails to load, falls back to the browser's own voice
-   so nothing ever breaks even if a file wasn't generated yet. */
+   so nothing ever breaks even if a file wasn't generated yet — this only
+   matters for dynamic text that can't be pre-generated. */
 function speak(text){
   if(!text) return;
   const id = slugify(text);
@@ -470,21 +548,12 @@ function speakLive(text){
   u.lang = 'es-ES';
   u.rate = 0.85;
   const voices = window.speechSynthesis.getVoices();
-  const preferred = localStorage.getItem('preferredSpanishVoice');
-  let voice = voices.find(v=>v.name===preferred);
-  if(!voice) voice = voices.find(v=>v.lang.toLowerCase().startsWith('es') && /female|mujer|mónica|monica|paulina|lucia|elvira|helena|marisol/i.test(v.name));
+  let voice = voices.find(v=>v.lang.toLowerCase().startsWith('es') && /female|mujer|mónica|monica|paulina|lucia|elvira|helena|marisol/i.test(v.name));
   if(!voice) voice = voices.find(v=>v.lang.toLowerCase()==='es-es');
   if(!voice) voice = voices.find(v=>v.lang.toLowerCase().startsWith('es'));
   if(voice) u.voice = voice;
   window.speechSynthesis.speak(u);
 }
-if('speechSynthesis' in window){
-  window.speechSynthesis.onvoiceschanged = populateVoices;
-  populateVoices();
-}
-document.getElementById('voiceSelect').addEventListener('change', e=>{
-  localStorage.setItem('preferredSpanishVoice', e.target.value);
-});
 
 /* Delegated handler so any standalone <button class="say" data-text="..."> works
    even if it wasn't wired up individually (e.g. inside static HTML boxes). */
@@ -533,6 +602,7 @@ function renderAllGrids(){
   renderFavorites();
 }
 renderAllGrids();
+renderPhraseBook();
 renderStars();
 
 /* ---------------- TABS ---------------- */
@@ -544,6 +614,7 @@ const TABS = [
   {id:'animales', label:'🐶 Animales'},
   {id:'familia', label:'👪 Familia'},
   {id:'comida', label:'🍎 Comida'},
+  {id:'frasario', label:'📖 Frases'},
   {id:'juego', label:'🎮 Game'},
   {id:'estrellas', label:'⭐ Favoritos'},
 ];
