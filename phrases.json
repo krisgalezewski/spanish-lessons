@@ -1,0 +1,1630 @@
+[
+  {
+    "file": "a-mi-me-gusta-el-amarillo-es-muy-alegre",
+    "es": "A mí me gusta el amarillo, es muy alegre."
+  },
+  {
+    "file": "adios",
+    "es": "Adiós"
+  },
+  {
+    "file": "adjetivos",
+    "es": "Adjetivos"
+  },
+  {
+    "file": "ah-gracias-es-dificil-para-mi",
+    "es": "Ah, gracias. Es difícil para mí."
+  },
+  {
+    "file": "ah-pero-seguro-que-es-muy-unida",
+    "es": "Ah, ¡pero seguro que es muy unida!"
+  },
+  {
+    "file": "animales",
+    "es": "Animales"
+  },
+  {
+    "file": "bienvenido",
+    "es": "Bienvenido"
+  },
+  {
+    "file": "buena-eleccion-compartimos-el-postre",
+    "es": "Buena elección. ¿Compartimos el postre?"
+  },
+  {
+    "file": "buenas-noches",
+    "es": "Buenas noches"
+  },
+  {
+    "file": "buenas-tardes",
+    "es": "Buenas tardes"
+  },
+  {
+    "file": "buenos-dias",
+    "es": "Buenos días"
+  },
+  {
+    "file": "ceno-pescado-con-verduras",
+    "es": "Ceno pescado con verduras."
+  },
+  {
+    "file": "colores",
+    "es": "Colores"
+  },
+  {
+    "file": "colores-animales-familia-comida",
+    "es": "Colores, animales, familia, comida"
+  },
+  {
+    "file": "comida",
+    "es": "Comida"
+  },
+  {
+    "file": "de-nada",
+    "es": "De nada"
+  },
+  {
+    "file": "desayuno-pan-con-queso",
+    "es": "Desayuno pan con queso."
+  },
+  {
+    "file": "dias-y-meses",
+    "es": "Días y meses"
+  },
+  {
+    "file": "ejercicios",
+    "es": "Ejercicios"
+  },
+  {
+    "file": "el-cielo-es-azul",
+    "es": "El cielo es azul."
+  },
+  {
+    "file": "el-perro-corre-en-el-parque",
+    "es": "El perro corre en el parque."
+  },
+  {
+    "file": "el-presente",
+    "es": "El presente"
+  },
+  {
+    "file": "encantado-de-conocerte",
+    "es": "Encantado de conocerte."
+  },
+  {
+    "file": "encantado-ana-yo-soy-tomas",
+    "es": "Encantado, Ana. Yo soy Tomás."
+  },
+  {
+    "file": "es-aburrido",
+    "es": "Es aburrido."
+  },
+  {
+    "file": "es-alto",
+    "es": "Es alto."
+  },
+  {
+    "file": "es-de-polonia",
+    "es": "Es de Polonia."
+  },
+  {
+    "file": "es-de-mi-vecino-es-muy-rapido",
+    "es": "Es de mi vecino. Es muy rápido."
+  },
+  {
+    "file": "es-el-veinte-de-mayo",
+    "es": "Es el veinte de mayo."
+  },
+  {
+    "file": "es-la-una",
+    "es": "Es la una."
+  },
+  {
+    "file": "estoy-bien",
+    "es": "Estoy bien"
+  },
+  {
+    "file": "estoy-cansado",
+    "es": "Estoy cansado."
+  },
+  {
+    "file": "estoy-un-poco-cansado",
+    "es": "Estoy un poco cansado."
+  },
+  {
+    "file": "estructuras",
+    "es": "Estructuras"
+  },
+  {
+    "file": "esta-aburrido",
+    "es": "Está aburrido."
+  },
+  {
+    "file": "esta-en-casa",
+    "es": "Está en casa."
+  },
+  {
+    "file": "esta-enfermo",
+    "es": "Está enfermo."
+  },
+  {
+    "file": "familia",
+    "es": "Familia"
+  },
+  {
+    "file": "fechas",
+    "es": "Fechas"
+  },
+  {
+    "file": "frases-y-saludos",
+    "es": "Frases y saludos"
+  },
+  {
+    "file": "gracias",
+    "es": "Gracias"
+  },
+  {
+    "file": "genero-y-articulos",
+    "es": "Género y artículos"
+  },
+  {
+    "file": "habla-mas-despacio-por-favor",
+    "es": "Habla más despacio, por favor."
+  },
+  {
+    "file": "hablo-espanol",
+    "es": "Hablo español"
+  },
+  {
+    "file": "hola",
+    "es": "Hola"
+  },
+  {
+    "file": "hola-mucho-gusto-me-llamo-ana",
+    "es": "Hola, mucho gusto. Me llamo Ana."
+  },
+  {
+    "file": "hola-como-te-llamas",
+    "es": "Hola, ¿cómo te llamas?"
+  },
+  {
+    "file": "la-arana-tiene-ocho-patas",
+    "es": "La araña tiene ocho patas."
+  },
+  {
+    "file": "la-flor-es-rosa",
+    "es": "La flor es rosa."
+  },
+  {
+    "file": "la-hierba-es-verde",
+    "es": "La hierba es verde."
+  },
+  {
+    "file": "la-hora",
+    "es": "La hora"
+  },
+  {
+    "file": "la-mia-es-pequena-solo-mi-madre-y-yo",
+    "es": "La mía es pequeña, solo mi madre y yo."
+  },
+  {
+    "file": "los-pajaros-cantan-por-la-manana",
+    "es": "Los pájaros cantan por la mañana."
+  },
+  {
+    "file": "me-gusta-el-cafe-por-la-manana",
+    "es": "Me gusta el café por la mañana."
+  },
+  {
+    "file": "me-gusta-el-verde-y-el-tuyo",
+    "es": "Me gusta el verde. ¿Y el tuyo?"
+  },
+  {
+    "file": "me-llamo-marek-y-tu",
+    "es": "Me llamo Marek. ¿Y tú?"
+  },
+  {
+    "file": "mi-casa-es-mas-grande-que-la-tuya",
+    "es": "Mi casa es más grande que la tuya."
+  },
+  {
+    "file": "mi-color-favorito-es-el-azul",
+    "es": "Mi color favorito es el azul."
+  },
+  {
+    "file": "mi-cumpleanos-es-en-marzo",
+    "es": "Mi cumpleaños es en marzo."
+  },
+  {
+    "file": "mi-familia-es-bastante-grande",
+    "es": "Mi familia es bastante grande."
+  },
+  {
+    "file": "mi-familia-es-muy-grande",
+    "es": "Mi familia es muy grande."
+  },
+  {
+    "file": "mi-glosario",
+    "es": "Mi glosario"
+  },
+  {
+    "file": "mi-madre-es-medica",
+    "es": "Mi madre es médica."
+  },
+  {
+    "file": "mis-zapatos-son-negros",
+    "es": "Mis zapatos son negros."
+  },
+  {
+    "file": "mucho-gusto",
+    "es": "Mucho gusto."
+  },
+  {
+    "file": "necesito-una-mesa-nueva-para-la-cocina",
+    "es": "Necesito una mesa nueva para la cocina."
+  },
+  {
+    "file": "no",
+    "es": "No"
+  },
+  {
+    "file": "no-entiendo",
+    "es": "No entiendo."
+  },
+  {
+    "file": "no-hablo-mucho-espanol-todavia",
+    "es": "No hablo mucho español todavía."
+  },
+  {
+    "file": "no-se-el-genero-de-esta-palabra",
+    "es": "No sé el género de esta palabra."
+  },
+  {
+    "file": "no-se-pronunciar-esta-palabra",
+    "es": "No sé pronunciar esta palabra."
+  },
+  {
+    "file": "no-te-preocupes-con-practica-sale-bien",
+    "es": "No te preocupes, con práctica sale bien."
+  },
+  {
+    "file": "numeros",
+    "es": "Números"
+  },
+  {
+    "file": "numeros-fechas-y-horas",
+    "es": "Números, fechas y horas"
+  },
+  {
+    "file": "perdon-no-entendi",
+    "es": "Perdón, no entendí."
+  },
+  {
+    "file": "perfecto-y-que-fecha-es-tu-cumpleanos",
+    "es": "Perfecto. ¿Y qué fecha es tu cumpleaños?"
+  },
+  {
+    "file": "por-favor",
+    "es": "Por favor"
+  },
+  {
+    "file": "posesivos",
+    "es": "Posesivos"
+  },
+  {
+    "file": "prefiero-una-mesa-pequena-el-apartamento-es-pequeno",
+    "es": "Prefiero una mesa pequeña, el apartamento es pequeño."
+  },
+  {
+    "file": "preguntas",
+    "es": "Preguntas"
+  },
+  {
+    "file": "presente",
+    "es": "Presente"
+  },
+  {
+    "file": "pronombres",
+    "es": "Pronombres"
+  },
+  {
+    "file": "pronunciacion",
+    "es": "Pronunciación"
+  },
+  {
+    "file": "quiero-pizza-y-una-ensalada-y-tu",
+    "es": "Quiero pizza y una ensalada. ¿Y tú?"
+  },
+  {
+    "file": "se-pronuncia-con-una-erre-fuerte-es-la-palabra-perro",
+    "es": "Se pronuncia con una erre fuerte. Es la palabra \"perro\"."
+  },
+  {
+    "file": "ser-vs-estar",
+    "es": "Ser vs Estar"
+  },
+  {
+    "file": "somos-cinco-mis-padres-mis-dos-hermanos-y-yo-y-la-tuya",
+    "es": "Somos cinco: mis padres, mis dos hermanos y yo. ¿Y la tuya?"
+  },
+  {
+    "file": "son-las-cuatro-menos-cuarto",
+    "es": "Son las cuatro menos cuarto."
+  },
+  {
+    "file": "son-las-tres-y-media",
+    "es": "Son las tres y media."
+  },
+  {
+    "file": "son-las-tres",
+    "es": "Son las tres."
+  },
+  {
+    "file": "soy-de-mexico-y-tu",
+    "es": "Soy de México. ¿Y tú?"
+  },
+  {
+    "file": "soy-de-polonia-pero-ahora-estoy-en-espana",
+    "es": "Soy de Polonia, pero ahora estoy en España."
+  },
+  {
+    "file": "soy-profesor",
+    "es": "Soy profesor."
+  },
+  {
+    "file": "si",
+    "es": "Sí"
+  },
+  {
+    "file": "si-el-amarillo-es-como-el-sol",
+    "es": "Sí, el amarillo es como el sol."
+  },
+  {
+    "file": "si-tengo-dos-gatos-y-un-pez-y-tu",
+    "es": "Sí, tengo dos gatos y un pez. ¿Y tú?"
+  },
+  {
+    "file": "tenemos-una-mesa-perfecta-para-ti",
+    "es": "Tenemos una mesa perfecta para ti."
+  },
+  {
+    "file": "tengo-dos-hijos-y-una-hija",
+    "es": "Tengo dos hijos y una hija."
+  },
+  {
+    "file": "tengo-mucha-hambre",
+    "es": "Tengo mucha hambre."
+  },
+  {
+    "file": "tengo-que-estudiar",
+    "es": "Tengo que estudiar."
+  },
+  {
+    "file": "tengo-que-limpiar-la-casa-pero-despues-quiero-descansar",
+    "es": "Tengo que limpiar la casa, pero después quiero descansar."
+  },
+  {
+    "file": "tengo-que-trabajar-manana",
+    "es": "Tengo que trabajar mañana."
+  },
+  {
+    "file": "tengo-un-perro-y-un-gato-en-casa",
+    "es": "Tengo un perro y un gato en casa."
+  },
+  {
+    "file": "tiene-dos-coches-y-una-moto-pequena",
+    "es": "Tiene dos coches y una moto pequeña."
+  },
+  {
+    "file": "vivo-con-mis-padres-y-mi-hermana",
+    "es": "Vivo con mis padres y mi hermana."
+  },
+  {
+    "file": "voy-a-comer",
+    "es": "Voy a comer."
+  },
+  {
+    "file": "voy-a-estudiar-espanol",
+    "es": "Voy a estudiar español."
+  },
+  {
+    "file": "voy-a-visitar-a-mis-padres-y-tu",
+    "es": "Voy a visitar a mis padres. ¿Y tú?"
+  },
+  {
+    "file": "yo-prefiero-el-pescado-con-arroz",
+    "es": "Yo prefiero el pescado con arroz."
+  },
+  {
+    "file": "yo-soy-ana-de-donde-eres",
+    "es": "Yo soy Ana. ¿De dónde eres?"
+  },
+  {
+    "file": "yo-tengo-un-perro-se-llama-rex-y-es-muy-grande",
+    "es": "Yo tengo un perro. Se llama Rex y es muy grande."
+  },
+  {
+    "file": "a-—-como-en-casa",
+    "es": "a — como en \"casa\""
+  },
+  {
+    "file": "abeja",
+    "es": "abeja"
+  },
+  {
+    "file": "abuela",
+    "es": "abuela"
+  },
+  {
+    "file": "abuelo",
+    "es": "abuelo"
+  },
+  {
+    "file": "agua",
+    "es": "agua"
+  },
+  {
+    "file": "almuerzo",
+    "es": "almuerzo"
+  },
+  {
+    "file": "amarillo",
+    "es": "amarillo"
+  },
+  {
+    "file": "arana",
+    "es": "araña"
+  },
+  {
+    "file": "arroz",
+    "es": "arroz"
+  },
+  {
+    "file": "azul",
+    "es": "azul"
+  },
+  {
+    "file": "bebe",
+    "es": "bebé"
+  },
+  {
+    "file": "beige",
+    "es": "beige"
+  },
+  {
+    "file": "blanco",
+    "es": "blanco"
+  },
+  {
+    "file": "caballo",
+    "es": "caballo"
+  },
+  {
+    "file": "cafe",
+    "es": "café"
+  },
+  {
+    "file": "carne",
+    "es": "carne"
+  },
+  {
+    "file": "casa",
+    "es": "casa"
+  },
+  {
+    "file": "casa-roja",
+    "es": "casa roja"
+  },
+  {
+    "file": "casas",
+    "es": "casas"
+  },
+  {
+    "file": "casas-rojas",
+    "es": "casas rojas"
+  },
+  {
+    "file": "catorce",
+    "es": "catorce"
+  },
+  {
+    "file": "cena",
+    "es": "cena"
+  },
+  {
+    "file": "cerdo",
+    "es": "cerdo"
+  },
+  {
+    "file": "cielo",
+    "es": "cielo"
+  },
+  {
+    "file": "cien",
+    "es": "cien"
+  },
+  {
+    "file": "cinco",
+    "es": "cinco"
+  },
+  {
+    "file": "cincuenta",
+    "es": "cincuenta"
+  },
+  {
+    "file": "ciudad",
+    "es": "ciudad"
+  },
+  {
+    "file": "ciudades",
+    "es": "ciudades"
+  },
+  {
+    "file": "coche-rojo",
+    "es": "coche rojo"
+  },
+  {
+    "file": "coches-rojos",
+    "es": "coches rojos"
+  },
+  {
+    "file": "come",
+    "es": "come"
+  },
+  {
+    "file": "comemos",
+    "es": "comemos"
+  },
+  {
+    "file": "comen",
+    "es": "comen"
+  },
+  {
+    "file": "comes",
+    "es": "comes"
+  },
+  {
+    "file": "como",
+    "es": "como"
+  },
+  {
+    "file": "comeis",
+    "es": "coméis"
+  },
+  {
+    "file": "conejo",
+    "es": "conejo"
+  },
+  {
+    "file": "cuarenta",
+    "es": "cuarenta"
+  },
+  {
+    "file": "cuarenta-y-cuatro",
+    "es": "cuarenta y cuatro"
+  },
+  {
+    "file": "cuatro",
+    "es": "cuatro"
+  },
+  {
+    "file": "desayuno",
+    "es": "desayuno"
+  },
+  {
+    "file": "diecinueve",
+    "es": "diecinueve"
+  },
+  {
+    "file": "dieciocho",
+    "es": "dieciocho"
+  },
+  {
+    "file": "diecisiete",
+    "es": "diecisiete"
+  },
+  {
+    "file": "dieciseis",
+    "es": "dieciséis"
+  },
+  {
+    "file": "dieciseis-veintidos",
+    "es": "dieciséis, veintidós"
+  },
+  {
+    "file": "diez",
+    "es": "diez"
+  },
+  {
+    "file": "doce",
+    "es": "doce"
+  },
+  {
+    "file": "domingo",
+    "es": "domingo"
+  },
+  {
+    "file": "dorado",
+    "es": "dorado"
+  },
+  {
+    "file": "dos",
+    "es": "dos"
+  },
+  {
+    "file": "e-—-como-en-mesa",
+    "es": "e — como en \"mesa\""
+  },
+  {
+    "file": "el-dia",
+    "es": "el día"
+  },
+  {
+    "file": "el-libro",
+    "es": "el libro"
+  },
+  {
+    "file": "el-primero-de-enero",
+    "es": "el primero de enero"
+  },
+  {
+    "file": "el-uno-de-enero",
+    "es": "el uno de enero"
+  },
+  {
+    "file": "el-veintiuno-de-agosto",
+    "es": "el veintiuno de agosto"
+  },
+  {
+    "file": "elefante",
+    "es": "elefante"
+  },
+  {
+    "file": "ella",
+    "es": "ella"
+  },
+  {
+    "file": "ellas",
+    "es": "ellas"
+  },
+  {
+    "file": "ellos",
+    "es": "ellos"
+  },
+  {
+    "file": "enero",
+    "es": "enero"
+  },
+  {
+    "file": "ensalada",
+    "es": "ensalada"
+  },
+  {
+    "file": "eres",
+    "es": "eres"
+  },
+  {
+    "file": "es",
+    "es": "es"
+  },
+  {
+    "file": "espanol",
+    "es": "español"
+  },
+  {
+    "file": "esposa",
+    "es": "esposa"
+  },
+  {
+    "file": "esposo",
+    "es": "esposo"
+  },
+  {
+    "file": "estamos",
+    "es": "estamos"
+  },
+  {
+    "file": "estoy",
+    "es": "estoy"
+  },
+  {
+    "file": "esta",
+    "es": "está"
+  },
+  {
+    "file": "estais",
+    "es": "estáis"
+  },
+  {
+    "file": "estan",
+    "es": "están"
+  },
+  {
+    "file": "estas",
+    "es": "estás"
+  },
+  {
+    "file": "fruta",
+    "es": "fruta"
+  },
+  {
+    "file": "facil",
+    "es": "fácil"
+  },
+  {
+    "file": "faciles",
+    "es": "fáciles"
+  },
+  {
+    "file": "gallina",
+    "es": "gallina"
+  },
+  {
+    "file": "gato",
+    "es": "gato"
+  },
+  {
+    "file": "gente",
+    "es": "gente"
+  },
+  {
+    "file": "grande",
+    "es": "grande"
+  },
+  {
+    "file": "grandes",
+    "es": "grandes"
+  },
+  {
+    "file": "gris",
+    "es": "gris"
+  },
+  {
+    "file": "habla",
+    "es": "habla"
+  },
+  {
+    "file": "hablamos",
+    "es": "hablamos"
+  },
+  {
+    "file": "hablan",
+    "es": "hablan"
+  },
+  {
+    "file": "hablas",
+    "es": "hablas"
+  },
+  {
+    "file": "hablo",
+    "es": "hablo"
+  },
+  {
+    "file": "hablais",
+    "es": "habláis"
+  },
+  {
+    "file": "hace",
+    "es": "hace"
+  },
+  {
+    "file": "hacemos",
+    "es": "hacemos"
+  },
+  {
+    "file": "hacen",
+    "es": "hacen"
+  },
+  {
+    "file": "haces",
+    "es": "haces"
+  },
+  {
+    "file": "hago",
+    "es": "hago"
+  },
+  {
+    "file": "hermana",
+    "es": "hermana"
+  },
+  {
+    "file": "hermano",
+    "es": "hermano"
+  },
+  {
+    "file": "hija",
+    "es": "hija"
+  },
+  {
+    "file": "hijo",
+    "es": "hijo"
+  },
+  {
+    "file": "huevo",
+    "es": "huevo"
+  },
+  {
+    "file": "i-—-como-en-si",
+    "es": "i — como en \"sí\""
+  },
+  {
+    "file": "ir-a",
+    "es": "ir a"
+  },
+  {
+    "file": "jueves",
+    "es": "jueves"
+  },
+  {
+    "file": "jugo",
+    "es": "jugo"
+  },
+  {
+    "file": "la-ciudad",
+    "es": "la ciudad"
+  },
+  {
+    "file": "la-mano",
+    "es": "la mano"
+  },
+  {
+    "file": "la-mesa",
+    "es": "la mesa"
+  },
+  {
+    "file": "la-nacion",
+    "es": "la nación"
+  },
+  {
+    "file": "las-mesas",
+    "es": "las mesas"
+  },
+  {
+    "file": "leche",
+    "es": "leche"
+  },
+  {
+    "file": "leon",
+    "es": "león"
+  },
+  {
+    "file": "llama",
+    "es": "llama"
+  },
+  {
+    "file": "los-libros",
+    "es": "los libros"
+  },
+  {
+    "file": "lunes",
+    "es": "lunes"
+  },
+  {
+    "file": "madre",
+    "es": "madre"
+  },
+  {
+    "file": "mama",
+    "es": "mamá"
+  },
+  {
+    "file": "manzana",
+    "es": "manzana"
+  },
+  {
+    "file": "marron",
+    "es": "marrón"
+  },
+  {
+    "file": "martes",
+    "es": "martes"
+  },
+  {
+    "file": "mi",
+    "es": "mi"
+  },
+  {
+    "file": "mis",
+    "es": "mis"
+  },
+  {
+    "file": "miercoles",
+    "es": "miércoles"
+  },
+  {
+    "file": "mono",
+    "es": "mono"
+  },
+  {
+    "file": "morado",
+    "es": "morado"
+  },
+  {
+    "file": "nacion",
+    "es": "nación"
+  },
+  {
+    "file": "naranja",
+    "es": "naranja"
+  },
+  {
+    "file": "negro",
+    "es": "negro"
+  },
+  {
+    "file": "nieta",
+    "es": "nieta"
+  },
+  {
+    "file": "nieto",
+    "es": "nieto"
+  },
+  {
+    "file": "nino",
+    "es": "niño"
+  },
+  {
+    "file": "nosotras",
+    "es": "nosotras"
+  },
+  {
+    "file": "nosotros",
+    "es": "nosotros"
+  },
+  {
+    "file": "noventa",
+    "es": "noventa"
+  },
+  {
+    "file": "noventa-y-nueve",
+    "es": "noventa y nueve"
+  },
+  {
+    "file": "nuestra",
+    "es": "nuestra"
+  },
+  {
+    "file": "nuestra-casa",
+    "es": "nuestra casa"
+  },
+  {
+    "file": "nuestras",
+    "es": "nuestras"
+  },
+  {
+    "file": "nuestro",
+    "es": "nuestro"
+  },
+  {
+    "file": "nuestros",
+    "es": "nuestros"
+  },
+  {
+    "file": "nueve",
+    "es": "nueve"
+  },
+  {
+    "file": "o-—-como-en-sol",
+    "es": "o — como en \"sol\""
+  },
+  {
+    "file": "ochenta",
+    "es": "ochenta"
+  },
+  {
+    "file": "ochenta-y-siete",
+    "es": "ochenta y siete"
+  },
+  {
+    "file": "ocho",
+    "es": "ocho"
+  },
+  {
+    "file": "once",
+    "es": "once"
+  },
+  {
+    "file": "oso",
+    "es": "oso"
+  },
+  {
+    "file": "oveja",
+    "es": "oveja"
+  },
+  {
+    "file": "padre",
+    "es": "padre"
+  },
+  {
+    "file": "pan",
+    "es": "pan"
+  },
+  {
+    "file": "papa",
+    "es": "papá"
+  },
+  {
+    "file": "pato",
+    "es": "pato"
+  },
+  {
+    "file": "perro",
+    "es": "perro"
+  },
+  {
+    "file": "pescado",
+    "es": "pescado"
+  },
+  {
+    "file": "pez",
+    "es": "pez"
+  },
+  {
+    "file": "pizza",
+    "es": "pizza"
+  },
+  {
+    "file": "plateado",
+    "es": "plateado"
+  },
+  {
+    "file": "platano",
+    "es": "plátano"
+  },
+  {
+    "file": "pollo",
+    "es": "pollo"
+  },
+  {
+    "file": "prima",
+    "es": "prima"
+  },
+  {
+    "file": "primo",
+    "es": "primo"
+  },
+  {
+    "file": "pajaro",
+    "es": "pájaro"
+  },
+  {
+    "file": "queremos",
+    "es": "queremos"
+  },
+  {
+    "file": "queso",
+    "es": "queso"
+  },
+  {
+    "file": "quiere",
+    "es": "quiere"
+  },
+  {
+    "file": "quieren",
+    "es": "quieren"
+  },
+  {
+    "file": "quieres",
+    "es": "quieres"
+  },
+  {
+    "file": "quiero",
+    "es": "quiero"
+  },
+  {
+    "file": "quince",
+    "es": "quince"
+  },
+  {
+    "file": "rana",
+    "es": "rana"
+  },
+  {
+    "file": "raton",
+    "es": "ratón"
+  },
+  {
+    "file": "rojo",
+    "es": "rojo"
+  },
+  {
+    "file": "rosa",
+    "es": "rosa"
+  },
+  {
+    "file": "seis",
+    "es": "seis"
+  },
+  {
+    "file": "serpiente",
+    "es": "serpiente"
+  },
+  {
+    "file": "sesenta",
+    "es": "sesenta"
+  },
+  {
+    "file": "setenta",
+    "es": "setenta"
+  },
+  {
+    "file": "siete",
+    "es": "siete"
+  },
+  {
+    "file": "sobrina",
+    "es": "sobrina"
+  },
+  {
+    "file": "sobrino",
+    "es": "sobrino"
+  },
+  {
+    "file": "sois",
+    "es": "sois"
+  },
+  {
+    "file": "somos",
+    "es": "somos"
+  },
+  {
+    "file": "son",
+    "es": "son"
+  },
+  {
+    "file": "sopa",
+    "es": "sopa"
+  },
+  {
+    "file": "soy",
+    "es": "soy"
+  },
+  {
+    "file": "su",
+    "es": "su"
+  },
+  {
+    "file": "suegra",
+    "es": "suegra"
+  },
+  {
+    "file": "suegro",
+    "es": "suegro"
+  },
+  {
+    "file": "sus",
+    "es": "sus"
+  },
+  {
+    "file": "sabado",
+    "es": "sábado"
+  },
+  {
+    "file": "telefono",
+    "es": "teléfono"
+  },
+  {
+    "file": "tenemos",
+    "es": "tenemos"
+  },
+  {
+    "file": "tener-que",
+    "es": "tener que"
+  },
+  {
+    "file": "tengo",
+    "es": "tengo"
+  },
+  {
+    "file": "tiene",
+    "es": "tiene"
+  },
+  {
+    "file": "tienen",
+    "es": "tienen"
+  },
+  {
+    "file": "tienes",
+    "es": "tienes"
+  },
+  {
+    "file": "tortuga",
+    "es": "tortuga"
+  },
+  {
+    "file": "trece",
+    "es": "trece"
+  },
+  {
+    "file": "treinta",
+    "es": "treinta"
+  },
+  {
+    "file": "tres",
+    "es": "tres"
+  },
+  {
+    "file": "tu",
+    "es": "tu"
+  },
+  {
+    "file": "turquesa",
+    "es": "turquesa"
+  },
+  {
+    "file": "tus",
+    "es": "tus"
+  },
+  {
+    "file": "te",
+    "es": "té"
+  },
+  {
+    "file": "tia",
+    "es": "tía"
+  },
+  {
+    "file": "tio",
+    "es": "tío"
+  },
+  {
+    "file": "u-—-como-en-luna",
+    "es": "u — como en \"luna\""
+  },
+  {
+    "file": "un",
+    "es": "un"
+  },
+  {
+    "file": "un-libro",
+    "es": "un libro"
+  },
+  {
+    "file": "una-mesa",
+    "es": "una mesa"
+  },
+  {
+    "file": "unas-mesas",
+    "es": "unas mesas"
+  },
+  {
+    "file": "uno",
+    "es": "uno"
+  },
+  {
+    "file": "unos-libros",
+    "es": "unos libros"
+  },
+  {
+    "file": "usted",
+    "es": "usted"
+  },
+  {
+    "file": "ustedes",
+    "es": "ustedes"
+  },
+  {
+    "file": "va",
+    "es": "va"
+  },
+  {
+    "file": "vaca",
+    "es": "vaca"
+  },
+  {
+    "file": "vamos",
+    "es": "vamos"
+  },
+  {
+    "file": "van",
+    "es": "van"
+  },
+  {
+    "file": "vas",
+    "es": "vas"
+  },
+  {
+    "file": "veinte",
+    "es": "veinte"
+  },
+  {
+    "file": "veintidos",
+    "es": "veintidós"
+  },
+  {
+    "file": "veintiocho",
+    "es": "veintiocho"
+  },
+  {
+    "file": "veintiuno",
+    "es": "veintiuno"
+  },
+  {
+    "file": "veintiun",
+    "es": "veintiún"
+  },
+  {
+    "file": "veintiun-anos",
+    "es": "veintiún años"
+  },
+  {
+    "file": "verde",
+    "es": "verde"
+  },
+  {
+    "file": "verduras",
+    "es": "verduras"
+  },
+  {
+    "file": "viernes",
+    "es": "viernes"
+  },
+  {
+    "file": "vino",
+    "es": "vino"
+  },
+  {
+    "file": "vive",
+    "es": "vive"
+  },
+  {
+    "file": "viven",
+    "es": "viven"
+  },
+  {
+    "file": "vives",
+    "es": "vives"
+  },
+  {
+    "file": "vivimos",
+    "es": "vivimos"
+  },
+  {
+    "file": "vivo",
+    "es": "vivo"
+  },
+  {
+    "file": "vivis",
+    "es": "vivís"
+  },
+  {
+    "file": "vosotras",
+    "es": "vosotras"
+  },
+  {
+    "file": "vosotros",
+    "es": "vosotros"
+  },
+  {
+    "file": "voy",
+    "es": "voy"
+  },
+  {
+    "file": "vuestra",
+    "es": "vuestra"
+  },
+  {
+    "file": "vuestras",
+    "es": "vuestras"
+  },
+  {
+    "file": "vuestro",
+    "es": "vuestro"
+  },
+  {
+    "file": "vuestros",
+    "es": "vuestros"
+  },
+  {
+    "file": "yo",
+    "es": "yo"
+  },
+  {
+    "file": "zapato",
+    "es": "zapato"
+  },
+  {
+    "file": "buena-suerte-con-la-limpieza",
+    "es": "¡Buena suerte con la limpieza!"
+  },
+  {
+    "file": "que-bonito-a-mi-me-encantan-los-perros",
+    "es": "¡Qué bonito! A mí me encantan los perros."
+  },
+  {
+    "file": "a-que-hora-quedamos-manana",
+    "es": "¿A qué hora quedamos mañana?"
+  },
+  {
+    "file": "cual-es-la-fecha-de-hoy",
+    "es": "¿Cuál es la fecha de hoy?"
+  },
+  {
+    "file": "cual-es-tu-color-favorito",
+    "es": "¿Cuál es tu color favorito?"
+  },
+  {
+    "file": "cual",
+    "es": "¿Cuál?"
+  },
+  {
+    "file": "cuando",
+    "es": "¿Cuándo?"
+  },
+  {
+    "file": "cuantas-personas-hay-en-tu-familia",
+    "es": "¿Cuántas personas hay en tu familia?"
+  },
+  {
+    "file": "cuanto-cuesta",
+    "es": "¿Cuánto cuesta?"
+  },
+  {
+    "file": "cuanto-a",
+    "es": "¿Cuánto/a?"
+  },
+  {
+    "file": "cuantos-anos-tienes",
+    "es": "¿Cuántos años tienes?"
+  },
+  {
+    "file": "cuantos-coches-tiene",
+    "es": "¿Cuántos coches tiene?"
+  },
+  {
+    "file": "cuantos-hermanos-tienes",
+    "es": "¿Cuántos hermanos tienes?"
+  },
+  {
+    "file": "como-estas-hoy",
+    "es": "¿Cómo estás hoy?"
+  },
+  {
+    "file": "como-estas",
+    "es": "¿Cómo estás?"
+  },
+  {
+    "file": "como-se-dice-esto-en-espanol",
+    "es": "¿Cómo se dice esto en español?"
+  },
+  {
+    "file": "como-se-escribe-tu-nombre",
+    "es": "¿Cómo se escribe tu nombre?"
+  },
+  {
+    "file": "como-se-pronuncia-esta-palabra",
+    "es": "¿Cómo se pronuncia esta palabra?"
+  },
+  {
+    "file": "de-donde-eres-tomas",
+    "es": "¿De dónde eres, Tomás?"
+  },
+  {
+    "file": "de-donde-eres",
+    "es": "¿De dónde eres?"
+  },
+  {
+    "file": "de-donde-es-usted",
+    "es": "¿De dónde es usted?"
+  },
+  {
+    "file": "de-quien-es-este-coche-rojo",
+    "es": "¿De quién es este coche rojo?"
+  },
+  {
+    "file": "de-quien-es-este-libro",
+    "es": "¿De quién es este libro?"
+  },
+  {
+    "file": "de-que-color-es-esto",
+    "es": "¿De qué color es esto?"
+  },
+  {
+    "file": "donde-vives",
+    "es": "¿Dónde vives?"
+  },
+  {
+    "file": "donde",
+    "es": "¿Dónde?"
+  },
+  {
+    "file": "es-masculino-o-femenino",
+    "es": "¿Es masculino o femenino?"
+  },
+  {
+    "file": "hablas-ingles",
+    "es": "¿Hablas inglés?"
+  },
+  {
+    "file": "por-que",
+    "es": "¿Por qué?"
+  },
+  {
+    "file": "prefieres-una-mesa-grande-o-pequena",
+    "es": "¿Prefieres una mesa grande o pequeña?"
+  },
+  {
+    "file": "puede-repetir-por-favor",
+    "es": "¿Puede repetir, por favor?"
+  },
+  {
+    "file": "puedes-repetir-eso-por-favor",
+    "es": "¿Puedes repetir eso, por favor?"
+  },
+  {
+    "file": "quieres-comer-algo",
+    "es": "¿Quieres comer algo?"
+  },
+  {
+    "file": "quien-eres-tu",
+    "es": "¿Quién eres tú?"
+  },
+  {
+    "file": "quien",
+    "es": "¿Quién?"
+  },
+  {
+    "file": "que-animal-es-tu-favorito",
+    "es": "¿Qué animal es tu favorito?"
+  },
+  {
+    "file": "que-dia-es-hoy",
+    "es": "¿Qué día es hoy?"
+  },
+  {
+    "file": "que-haces-el-sabado",
+    "es": "¿Qué haces el sábado?"
+  },
+  {
+    "file": "que-haces-los-fines-de-semana",
+    "es": "¿Qué haces los fines de semana?"
+  },
+  {
+    "file": "que-hora-es",
+    "es": "¿Qué hora es?"
+  },
+  {
+    "file": "que-quieres-comer",
+    "es": "¿Qué quieres comer?"
+  },
+  {
+    "file": "que-tal-a-las-cuatro-y-media-de-la-tarde",
+    "es": "¿Qué tal a las cuatro y media de la tarde?"
+  },
+  {
+    "file": "que-tal",
+    "es": "¿Qué tal?"
+  },
+  {
+    "file": "que-vas-a-pedir",
+    "es": "¿Qué vas a pedir?"
+  },
+  {
+    "file": "que",
+    "es": "¿Qué?"
+  },
+  {
+    "file": "se-dice-el-o-la",
+    "es": "¿Se dice \"el\" o \"la\"?"
+  },
+  {
+    "file": "te-dan-miedo-las-aranas",
+    "es": "¿Te dan miedo las arañas?"
+  },
+  {
+    "file": "te-gusta-el-rojo-o-el-verde",
+    "es": "¿Te gusta el rojo o el verde?"
+  },
+  {
+    "file": "te-gusta-la-comida-picante",
+    "es": "¿Te gusta la comida picante?"
+  },
+  {
+    "file": "tienes-mascotas-en-casa",
+    "es": "¿Tienes mascotas en casa?"
+  },
+  {
+    "file": "el",
+    "es": "él"
+  }
+]

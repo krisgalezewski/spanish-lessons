@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spanish at Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Source+Serif+4:wght@600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F7F3EC;
+    --teal:#1D4E4B;
+    --terracotta:#C1502E;
+    --marigold:#F2A93B;
+    --ink:#24211E;
+    --ink-soft:#6b665c;
+    --line:#E4DCC8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--parchment);color:var(--ink);
+    font-family:'Work Sans',sans-serif;min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;
+    padding:8vh 6vw 6vh;
+  }
+  .hero{text-align:center;max-width:620px;margin-bottom:48px;}
+  .hero .tile-row{font-size:1.6rem;letter-spacing:6px;margin-bottom:14px;}
+  h1{font-family:'Source Serif 4',serif;font-size:2.4rem;margin:0 0 12px;color:var(--teal);}
+  .hero p{color:var(--ink-soft);font-size:1.08rem;line-height:1.6;}
+
+  .doors{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;max-width:900px;}
+  .door{
+    background:#fff;border:1px solid var(--line);border-radius:20px;
+    width:340px;padding:32px 28px;text-align:center;
+    text-decoration:none;color:var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .door:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(36,33,30,0.1);}
+  .door .icon{font-size:3rem;margin-bottom:10px;}
+  .door h2{font-family:'Baloo 2',sans-serif;font-size:1.5rem;margin:0 0 8px;}
+  .door.kids h2{color:var(--terracotta);}
+  .door.adult h2{font-family:'Source Serif 4',serif;color:var(--teal);}
+  .door p{color:var(--ink-soft);font-size:0.96rem;line-height:1.5;margin:0 0 18px;}
+  .door .tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:6px;}
+  .door .tag{
+    background:var(--parchment);border:1px solid var(--line);border-radius:999px;
+    padding:5px 12px;font-size:0.8rem;color:var(--ink-soft);
+  }
+  .door .go{
+    margin-top:auto;font-weight:700;font-family:'Baloo 2',sans-serif;
+    padding:10px 22px;border-radius:999px;
+  }
+  .door.kids .go{background:var(--marigold);color:#4a3300;}
+  .door.adult .go{background:var(--teal);color:#fff;}
+
+  footer{margin-top:56px;color:var(--ink-soft);font-size:0.88rem;text-align:center;max-width:520px;}
+
+  @media (max-width:720px){
+    .doors{flex-direction:column;align-items:center;}
+    .door{width:100%;max-width:360px;}
+    h1{font-size:1.9rem;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="tile-row">🟧🟦🟨🟩</div>
+    <h1>Spanish at Home</h1>
+    <p>Two doors into the same language — one for learning your first words, one for understanding how they fit together. Pick whichever fits today.</p>
+  </div>
+
+  <div class="doors">
+    <a class="door kids" href="spanish_kids.html">
+      <div class="icon">🌞</div>
+      <h2>¡Vamos! — Kids' Spanish</h2>
+      <div class="tags">
+        <span class="tag">Greetings</span><span class="tag">Numbers</span><span class="tag">Colors</span>
+        <span class="tag">Animals</span><span class="tag">Family</span><span class="tag">Food</span><span class="tag">Games</span>
+      </div>
+      <p>Big flashcards, a listen-and-repeat button on every word, a matching game, and a quiz that hands out stars.</p>
+      <span class="go">Start playing →</span>
+    </a>
+
+    <a class="door adult" href="spanish_adult.html">
+      <div class="icon">🌿</div>
+      <h2>Spanish Grammar Lab</h2>
+      <div class="tags">
+        <span class="tag">Pronunciation</span><span class="tag">Gender</span><span class="tag">Ser/Estar</span>
+        <span class="tag">Conjugation</span><span class="tag">Exercises</span>
+      </div>
+      <p>The same everyday topics, plus the grammar underneath — with notes comparing Spanish to English and Polish, and exercises with scoring.</p>
+      <span class="go">Start studying →</span>
+    </a>
+  </div>
+
+  <footer>Both pages share the same 🔊 listen-and-repeat approach — pick a Spanish voice once on either page (top of the page) and it's remembered on that page going forward.</footer>
+
+</body>
+</html>

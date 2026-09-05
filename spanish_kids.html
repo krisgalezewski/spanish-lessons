@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Vamos! Spanish for Kids</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --marigold:#F2A93B;
+    --coral:#FF6B5B;
+    --sky:#3FA9D6;
+    --grass:#5FAE55;
+    --plum:#8A5FBF;
+    --cream:#FFFBF2;
+    --card:#FFFFFF;
+    --ink:#2E2A26;
+    --ink-soft:#6b6459;
+    --line:#EFE6D6;
+    --radius:22px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Nunito',sans-serif;
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  h1,h2,h3,.display{font-family:'Baloo 2',sans-serif;}
+  a{color:inherit;}
+
+  /* ---------- Header / Nav ---------- */
+  header.top{
+    background:var(--card);
+    border-bottom:4px dashed var(--marigold);
+    padding:14px 5vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    position:sticky;
+    top:0;
+    z-index:20;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:800;}
+  .brand .blob{font-size:1.7rem;}
+  .stars{
+    background:var(--marigold);
+    color:#4a3300;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:1.05rem;
+    white-space:nowrap;
+  }
+  nav.tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:10px 5vw 14px;
+    background:var(--card);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:64px;
+    z-index:19;
+    -webkit-overflow-scrolling:touch;
+  }
+  nav.tabs button{
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    font-size:0.98rem;
+    border:2px solid var(--line);
+    background:var(--cream);
+    color:var(--ink);
+    padding:9px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:transform .12s ease, background .12s ease;
+  }
+  nav.tabs button:hover{transform:translateY(-2px);}
+  nav.tabs button.active{
+    background:var(--coral);
+    border-color:var(--coral);
+    color:#fff;
+  }
+
+  main{max-width:960px;margin:0 auto;padding:28px 5vw 10px;}
+  section.panel{display:none;animation:fade .25s ease;}
+  section.panel.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  .intro-card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:28px;
+    border:3px solid var(--line);
+    margin-bottom:22px;
+  }
+  .intro-card h1{font-size:2rem;margin:0 0 8px;}
+  .intro-card p{color:var(--ink-soft);line-height:1.55;font-size:1.05rem;margin:0 0 10px;}
+  .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:18px;}
+  .mode-chip{
+    background:var(--cream);
+    border:2px solid var(--line);
+    border-radius:16px;
+    padding:14px;
+    text-align:center;
+    font-weight:800;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  .mode-chip .e{font-size:1.8rem;display:block;margin-bottom:4px;}
+  .mode-chip:hover{border-color:var(--marigold);}
+
+  .voice-row{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:var(--card);border:2px dashed var(--sky);border-radius:16px;
+    padding:12px 16px;margin-bottom:20px;font-size:0.92rem;
+  }
+  .voice-row select{
+    font-family:'Nunito',sans-serif;font-weight:700;padding:6px 10px;border-radius:10px;border:2px solid var(--line);background:#fff;
+  }
+
+  h2.section-title{font-size:1.6rem;margin:6px 0 4px;}
+  p.section-sub{color:var(--ink-soft);margin:0 0 18px;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
+  .flash{
+    background:var(--card);
+    border:3px solid var(--line);
+    border-radius:20px;
+    padding:16px 12px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    min-height:150px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    transition:transform .12s ease, border-color .12s ease;
+  }
+  .flash:hover{transform:translateY(-3px);border-color:var(--marigold);}
+  .flash .emoji{font-size:2.6rem;}
+  .flash .es{font-weight:800;font-size:1.15rem;font-family:'Baloo 2',sans-serif;}
+  .flash .en{font-size:0.92rem;color:var(--ink-soft);opacity:0;height:0;overflow:hidden;transition:opacity .15s ease;}
+  .flash.flipped .en{opacity:1;height:auto;}
+  .flash .say{
+    position:absolute;top:8px;right:8px;
+    background:var(--sky);color:#fff;border:none;
+    width:34px;height:34px;border-radius:50%;
+    font-size:1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .flash .say:hover{background:var(--grass);}
+  .flash .fav{
+    position:absolute;top:8px;left:8px;
+    background:transparent;border:none;font-size:1.15rem;cursor:pointer;color:#d8cdb6;
+  }
+  .flash .fav.saved{color:var(--marigold);}
+
+  .big-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--coral);color:#fff;border:none;
+    font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1.05rem;
+    padding:14px 22px;border-radius:999px;cursor:pointer;margin:10px 0 18px;
+  }
+  .big-btn:hover{background:#e85748;}
+  .big-btn.alt{background:var(--grass);}
+  .big-btn.alt:hover{background:#4c9743;}
+  .big-btn.plum{background:var(--plum);}
+  .big-btn.plum:hover{background:#754fa6;}
+
+  /* Game area */
+  .game-box{
+    background:var(--card);border:3px solid var(--line);border-radius:var(--radius);
+    padding:22px;text-align:center;
+  }
+  .game-status{font-family:'Baloo 2',sans-serif;font-size:1.1rem;margin-bottom:14px;}
+  .quiz-emoji{font-size:4rem;margin-bottom:10px;}
+  .quiz-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;max-width:620px;margin:0 auto;}
+  .quiz-options button{
+    font-family:'Baloo 2',sans-serif;font-weight:700;font-size:1rem;
+    padding:14px;border-radius:14px;border:3px solid var(--line);background:var(--cream);cursor:pointer;
+  }
+  .quiz-options button:hover{border-color:var(--sky);}
+  .quiz-options button.correct{background:var(--grass);color:#fff;border-color:var(--grass);}
+  .quiz-options button.wrong{background:var(--coral);color:#fff;border-color:var(--coral);}
+
+  .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:640px;margin:0 auto;}
+  .match-col{display:flex;flex-direction:column;gap:10px;}
+  .match-item{
+    background:var(--cream);border:3px solid var(--line);border-radius:14px;
+    padding:12px;font-family:'Baloo 2',sans-serif;font-weight:700;cursor:pointer;font-size:1rem;
+  }
+  .match-item.selected{border-color:var(--sky);background:#e6f4fb;}
+  .match-item.correct{border-color:var(--grass);background:#e9f6e6;cursor:default;}
+  .match-item.shake{animation:shake .3s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+
+  .puzzle-box{
+    background:#FFF6E4;border:3px dashed var(--marigold);border-radius:20px;
+    padding:20px 22px;margin-top:22px;
+  }
+  .puzzle-box h3{font-size:1.1rem;}
+  .puzzle-example{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:10px;font-family:'Baloo 2',sans-serif;font-weight:700;}
+  .puzzle-example .piece{background:#fff;border:2px solid var(--sky);border-radius:10px;padding:5px 10px;}
+  .puzzle-example .plus,.puzzle-example .equals{color:var(--ink-soft);font-weight:500;}
+  .puzzle-example .answer{background:var(--grass);color:#fff;border-radius:10px;padding:5px 10px;display:inline-flex;align-items:center;gap:4px;}
+  .puzzle-example .answer .say{background:rgba(255,255,255,0.3);width:26px;height:26px;font-size:0.85rem;}
+  .puzzle-example .means{color:var(--ink-soft);font-weight:500;font-size:0.9rem;}
+
+  footer{text-align:center;color:var(--ink-soft);font-size:0.85rem;padding:30px 5vw 0;}
+  footer a{text-decoration:underline;}
+
+  @media (max-width:520px){
+    .brand{font-size:1.1rem;}
+    .intro-card h1{font-size:1.6rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><span class="blob">🌞</span> ¡Vamos! <span style="font-weight:500;font-size:0.85rem;color:var(--ink-soft);">Spanish for Kids</span></div>
+  <div class="stars">⭐ <span id="starCount">0</span></div>
+</header>
+
+<nav class="tabs" id="tabBar"></nav>
+
+<main>
+
+  <section class="panel active" data-panel="inicio">
+    <div class="intro-card">
+      <h1>¡Hola! Let's learn Spanish 🎉</h1>
+      <p>Tap a card to flip it. Tap the 🔊 button to hear it out loud, and say it back — that's the best way to learn!</p>
+      <p>Pick a topic below to start, or try the <strong>Game</strong> tab once you know a few words.</p>
+      <div class="mode-grid">
+        <div class="mode-chip" data-goto="saludos"><span class="e">👋</span>Saludos</div>
+        <div class="mode-chip" data-goto="numeros"><span class="e">🔢</span>Números</div>
+        <div class="mode-chip" data-goto="colores"><span class="e">🎨</span>Colores</div>
+        <div class="mode-chip" data-goto="animales"><span class="e">🐶</span>Animales</div>
+        <div class="mode-chip" data-goto="familia"><span class="e">👪</span>Familia</div>
+        <div class="mode-chip" data-goto="comida"><span class="e">🍎</span>Comida</div>
+        <div class="mode-chip" data-goto="juego"><span class="e">🎮</span>Game</div>
+      </div>
+    </div>
+
+    <div class="voice-row">
+      🔊 <strong>Voice:</strong>
+      <select id="voiceSelect"></select>
+      <span style="color:var(--ink-soft);">— pick the clearest Spanish voice your browser has.</span>
+    </div>
+  </section>
+
+  <section class="panel" data-panel="saludos">
+    <h2 class="section-title">👋 Saludos — Greetings</h2>
+    <p class="section-sub">Tap a card to flip it. Tap 🔊 to listen and repeat.</p>
+    <div class="grid" id="grid-saludos"></div>
+  </section>
+
+  <section class="panel" data-panel="numeros">
+    <h2 class="section-title">🔢 Números — Numbers 1–20</h2>
+    <p class="section-sub">Count out loud with the audio button!</p>
+    <div class="grid" id="grid-numeros"></div>
+
+    <h2 class="section-title" style="margin-top:34px;">🔟 Decenas — Counting by tens</h2>
+    <p class="section-sub">These take you all the way to 100.</p>
+    <div class="grid" id="grid-decenas"></div>
+
+    <div class="puzzle-box">
+      <h3 style="margin-top:0;">🧩 Big numbers are like puzzles!</h3>
+      <p>Once you know your tens and your 1–9, you can build almost <em>any</em> number by snapping two pieces together with <strong>y</strong> ("and"):</p>
+      <div class="puzzle-example">
+        <span class="piece">cuarenta</span><span class="plus">+ y +</span><span class="piece">cuatro</span><span class="equals">=</span>
+        <span class="answer">cuarenta y cuatro <button class="say" data-text="cuarenta y cuatro">🔊</button></span>
+        <span class="means">(44)</span>
+      </div>
+      <div class="puzzle-example">
+        <span class="piece">ochenta</span><span class="plus">+ y +</span><span class="piece">siete</span><span class="equals">=</span>
+        <span class="answer">ochenta y siete <button class="say" data-text="ochenta y siete">🔊</button></span>
+        <span class="means">(87)</span>
+      </div>
+      <div class="puzzle-example">
+        <span class="piece">noventa</span><span class="plus">+ y +</span><span class="piece">nueve</span><span class="equals">=</span>
+        <span class="answer">noventa y nueve <button class="say" data-text="noventa y nueve">🔊</button></span>
+        <span class="means">(99)</span>
+      </div>
+      <p style="margin-bottom:0;color:var(--ink-soft);font-size:0.92rem;">Tricky bit: 16–29 actually squish into <em>one</em> word instead — <span class="es">dieciséis</span> (16), <span class="es">veintidós</span> (22) <button class="say" data-text="dieciséis, veintidós">🔊</button> — but 31 and up always use the two-piece "y" pattern.</p>
+    </div>
+  </section>
+
+  <section class="panel" data-panel="colores">
+    <h2 class="section-title">🎨 Colores — Colors</h2>
+    <p class="section-sub">What color is your favorite toy?</p>
+    <div class="grid" id="grid-colores"></div>
+  </section>
+
+  <section class="panel" data-panel="animales">
+    <h2 class="section-title">🐶 Animales — Animals</h2>
+    <p class="section-sub">What sound does each animal make in Spanish? Ask a grown-up!</p>
+    <div class="grid" id="grid-animales"></div>
+  </section>
+
+  <section class="panel" data-panel="familia">
+    <h2 class="section-title">👪 Familia — Family</h2>
+    <p class="section-sub">Who's in your family?</p>
+    <div class="grid" id="grid-familia"></div>
+  </section>
+
+  <section class="panel" data-panel="comida">
+    <h2 class="section-title">🍎 Comida — Food</h2>
+    <p class="section-sub">Yummy words for lunchtime.</p>
+    <div class="grid" id="grid-comida"></div>
+  </section>
+
+  <section class="panel" data-panel="juego">
+    <h2 class="section-title">🎮 Game time!</h2>
+    <p class="section-sub">Choose a game and earn stars ⭐</p>
+    <div style="text-align:center;margin-bottom:16px;">
+      <button class="big-btn" id="startQuiz">🧠 Quiz: pick the right word</button>
+      <button class="big-btn alt" id="startMatch">🔗 Matching game</button>
+    </div>
+    <div class="game-box" id="gameArea">
+      <p style="color:var(--ink-soft);">Pick a game above to begin!</p>
+    </div>
+  </section>
+
+  <section class="panel" data-panel="estrellas">
+    <h2 class="section-title">⭐ Mis palabras favoritas — My favorite words</h2>
+    <p class="section-sub">Words you saved with the ⭐ button. Tap 🔊 to practice them.</p>
+    <div class="grid" id="grid-favoritos"></div>
+    <p id="noFavs" style="color:var(--ink-soft);display:none;">Nothing saved yet — go tap a ⭐ on any word card!</p>
+  </section>
+
+</main>
+
+<footer>Made for practicing Spanish at home — a companion to the English lessons. Switch to the <a href="spanish_adult.html">grown-up grammar lab</a> or go <a href="index.html">home</a>.</footer>
+
+<script>
+/* ---------------- DATA ---------------- */
+const DATA = {
+  saludos: [
+    {es:'Hola', en:'Hello', e:'👋'},
+    {es:'Buenos días', en:'Good morning', e:'☀️'},
+    {es:'Buenas tardes', en:'Good afternoon', e:'🌤️'},
+    {es:'Buenas noches', en:'Good night', e:'🌙'},
+    {es:'¿Cómo estás?', en:'How are you?', e:'🤔'},
+    {es:'Estoy bien', en:"I'm fine", e:'🙂'},
+    {es:'Adiós', en:'Goodbye', e:'🚪'},
+    {es:'Por favor', en:'Please', e:'🙏'},
+    {es:'Gracias', en:'Thank you', e:'😊'},
+    {es:'De nada', en:"You're welcome", e:'🤗'},
+    {es:'Sí', en:'Yes', e:'✅'},
+    {es:'No', en:'No', e:'❌'},
+  ],
+  numeros: [
+    {es:'uno',en:'1',e:'1️⃣'},{es:'dos',en:'2',e:'2️⃣'},{es:'tres',en:'3',e:'3️⃣'},
+    {es:'cuatro',en:'4',e:'4️⃣'},{es:'cinco',en:'5',e:'5️⃣'},{es:'seis',en:'6',e:'6️⃣'},
+    {es:'siete',en:'7',e:'7️⃣'},{es:'ocho',en:'8',e:'8️⃣'},{es:'nueve',en:'9',e:'9️⃣'},
+    {es:'diez',en:'10',e:'🔟'},{es:'once',en:'11',e:'✨'},{es:'doce',en:'12',e:'✨'},
+    {es:'trece',en:'13',e:'✨'},{es:'catorce',en:'14',e:'✨'},{es:'quince',en:'15',e:'✨'},
+    {es:'dieciséis',en:'16',e:'✨'},{es:'diecisiete',en:'17',e:'✨'},{es:'dieciocho',en:'18',e:'✨'},
+    {es:'diecinueve',en:'19',e:'✨'},{es:'veinte',en:'20',e:'✨'},
+  ],
+  decenas: [
+    {es:'diez',en:'10',e:'🔟'},{es:'veinte',en:'20',e:'✨'},{es:'treinta',en:'30',e:'✨'},
+    {es:'cuarenta',en:'40',e:'✨'},{es:'cincuenta',en:'50',e:'✨'},{es:'sesenta',en:'60',e:'✨'},
+    {es:'setenta',en:'70',e:'✨'},{es:'ochenta',en:'80',e:'✨'},{es:'noventa',en:'90',e:'✨'},
+    {es:'cien',en:'100',e:'💯'},
+  ],
+  colores: [
+    {es:'rojo',en:'red',e:'🔴'},{es:'azul',en:'blue',e:'🔵'},{es:'amarillo',en:'yellow',e:'🟡'},
+    {es:'verde',en:'green',e:'🟢'},{es:'naranja',en:'orange',e:'🟠'},{es:'morado',en:'purple',e:'🟣'},
+    {es:'rosa',en:'pink',e:'💗'},{es:'negro',en:'black',e:'⚫'},{es:'blanco',en:'white',e:'⚪'},
+    {es:'marrón',en:'brown',e:'🟤'},
+  ],
+  animales: [
+    {es:'perro',en:'dog',e:'🐶'},{es:'gato',en:'cat',e:'🐱'},{es:'pájaro',en:'bird',e:'🐦'},
+    {es:'pez',en:'fish',e:'🐟'},{es:'caballo',en:'horse',e:'🐴'},{es:'vaca',en:'cow',e:'🐮'},
+    {es:'cerdo',en:'pig',e:'🐷'},{es:'oveja',en:'sheep',e:'🐑'},{es:'león',en:'lion',e:'🦁'},
+    {es:'elefante',en:'elephant',e:'🐘'},{es:'mono',en:'monkey',e:'🐵'},{es:'conejo',en:'rabbit',e:'🐰'},
+    {es:'oso',en:'bear',e:'🐻'},{es:'rana',en:'frog',e:'🐸'},{es:'tortuga',en:'turtle',e:'🐢'},
+  ],
+  familia: [
+    {es:'mamá',en:'mom',e:'👩'},{es:'papá',en:'dad',e:'👨'},{es:'hermano',en:'brother',e:'👦'},
+    {es:'hermana',en:'sister',e:'👧'},{es:'abuelo',en:'grandpa',e:'👴'},{es:'abuela',en:'grandma',e:'👵'},
+    {es:'bebé',en:'baby',e:'👶'},{es:'familia',en:'family',e:'👪'},{es:'tío',en:'uncle',e:'🧔'},
+    {es:'tía',en:'aunt',e:'👩‍🦱'},
+  ],
+  comida: [
+    {es:'manzana',en:'apple',e:'🍎'},{es:'plátano',en:'banana',e:'🍌'},{es:'pan',en:'bread',e:'🍞'},
+    {es:'agua',en:'water',e:'💧'},{es:'leche',en:'milk',e:'🥛'},{es:'queso',en:'cheese',e:'🧀'},
+    {es:'pizza',en:'pizza',e:'🍕'},{es:'pollo',en:'chicken',e:'🍗'},{es:'arroz',en:'rice',e:'🍚'},
+    {es:'huevo',en:'egg',e:'🥚'},
+  ],
+};
+
+/* ---------------- STARS / FAVORITES (localStorage) ---------------- */
+const STAR_KEY = 'kidSpanishStars';
+const FAV_KEY = 'kidSpanishFavorites';
+function getStars(){ return parseInt(localStorage.getItem(STAR_KEY) || '0', 10); }
+function addStars(n){ localStorage.setItem(STAR_KEY, String(getStars()+n)); renderStars(); }
+function renderStars(){ document.getElementById('starCount').textContent = getStars(); }
+function getFavs(){ try{ return JSON.parse(localStorage.getItem(FAV_KEY) || '[]'); }catch(e){ return []; } }
+function toggleFav(es){
+  let favs = getFavs();
+  if(favs.includes(es)){ favs = favs.filter(x=>x!==es); } else { favs.push(es); addStars(1); }
+  localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+  renderAllGrids();
+}
+
+/* ---------------- AUDIO (Web Speech API) ----------------
+   Kept in one function so it can be swapped for Google Cloud
+   TTS later without touching the rest of the page. */
+function populateVoices(){
+  const sel = document.getElementById('voiceSelect');
+  if(!sel || !('speechSynthesis' in window)) return;
+  const voices = window.speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith('es'));
+  const current = sel.value;
+  sel.innerHTML = '';
+  if(voices.length===0){
+    const opt=document.createElement('option'); opt.textContent='(loading voices…)'; sel.appendChild(opt);
+    return;
+  }
+  voices.forEach(v=>{
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    opt.textContent = v.name + ' (' + v.lang + ')';
+    sel.appendChild(opt);
+  });
+  const saved = localStorage.getItem('preferredSpanishVoice');
+  if(saved && voices.some(v=>v.name===saved)) sel.value = saved;
+  else if(current) sel.value = current;
+}
+/* Turn Spanish text into the same filename generate_audio.py would use.
+   Keep this in sync with slugify() in generate_audio.py. */
+function slugify(text){
+  return text.toString().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[¿¡?!.,;:"'()]/g,'')
+    .trim()
+    .replace(/[\s/]+/g,'-')
+    .replace(/-+/g,'-')
+    .replace(/^-|-$/g,'');
+}
+/* speak(): tries a pre-generated Google Cloud TTS mp3 first (audio/es/<slug>.mp3);
+   if it's missing or fails to load, falls back to the browser's own voice
+   so nothing ever breaks even if a file wasn't generated yet. */
+function speak(text){
+  if(!text) return;
+  const id = slugify(text);
+  let fellBack = false;
+  const audio = new Audio(`audio/es/${id}.mp3`);
+  const fallback = ()=>{ if(!fellBack){ fellBack = true; speakLive(text); } };
+  audio.addEventListener('error', fallback);
+  audio.play().catch(fallback);
+}
+function speakLive(text){
+  if(!('speechSynthesis' in window)){ return; }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'es-ES';
+  u.rate = 0.85;
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = localStorage.getItem('preferredSpanishVoice');
+  let voice = voices.find(v=>v.name===preferred);
+  if(!voice) voice = voices.find(v=>v.lang.toLowerCase().startsWith('es') && /female|mujer|mónica|monica|paulina|lucia|elvira|helena|marisol/i.test(v.name));
+  if(!voice) voice = voices.find(v=>v.lang.toLowerCase()==='es-es');
+  if(!voice) voice = voices.find(v=>v.lang.toLowerCase().startsWith('es'));
+  if(voice) u.voice = voice;
+  window.speechSynthesis.speak(u);
+}
+if('speechSynthesis' in window){
+  window.speechSynthesis.onvoiceschanged = populateVoices;
+  populateVoices();
+}
+document.getElementById('voiceSelect').addEventListener('change', e=>{
+  localStorage.setItem('preferredSpanishVoice', e.target.value);
+});
+
+/* Delegated handler so any standalone <button class="say" data-text="..."> works
+   even if it wasn't wired up individually (e.g. inside static HTML boxes). */
+document.body.addEventListener('click', e=>{
+  const btn = e.target.closest('.say');
+  if(btn && !btn.closest('.flash')) speak(btn.dataset.text);
+});
+
+/* ---------------- RENDER FLASHCARD GRIDS ---------------- */
+function makeFlash(item){
+  const div = document.createElement('div');
+  div.className = 'flash';
+  const favs = getFavs();
+  div.innerHTML = `
+    <button class="fav ${favs.includes(item.es)?'saved':''}" title="Save">⭐</button>
+    <button class="say" title="Listen">🔊</button>
+    <span class="emoji">${item.e}</span>
+    <span class="es">${item.es}</span>
+    <span class="en">${item.en}</span>
+  `;
+  div.addEventListener('click', (ev)=>{
+    if(ev.target.closest('.say') || ev.target.closest('.fav')) return;
+    div.classList.toggle('flipped');
+  });
+  div.querySelector('.say').addEventListener('click', (ev)=>{ ev.stopPropagation(); speak(item.es); });
+  div.querySelector('.fav').addEventListener('click', (ev)=>{ ev.stopPropagation(); toggleFav(item.es); });
+  return div;
+}
+function renderGrid(key){
+  const grid = document.getElementById('grid-'+key);
+  if(!grid) return;
+  grid.innerHTML='';
+  DATA[key].forEach(item=>grid.appendChild(makeFlash(item)));
+}
+function renderFavorites(){
+  const grid = document.getElementById('grid-favoritos');
+  const favs = getFavs();
+  const all = Object.values(DATA).flat();
+  const items = favs.map(es=>all.find(i=>i.es===es)).filter(Boolean);
+  grid.innerHTML='';
+  items.forEach(item=>grid.appendChild(makeFlash(item)));
+  document.getElementById('noFavs').style.display = items.length? 'none':'block';
+}
+function renderAllGrids(){
+  Object.keys(DATA).forEach(renderGrid);
+  renderFavorites();
+}
+renderAllGrids();
+renderStars();
+
+/* ---------------- TABS ---------------- */
+const TABS = [
+  {id:'inicio', label:'🏠 Inicio'},
+  {id:'saludos', label:'👋 Saludos'},
+  {id:'numeros', label:'🔢 Números'},
+  {id:'colores', label:'🎨 Colores'},
+  {id:'animales', label:'🐶 Animales'},
+  {id:'familia', label:'👪 Familia'},
+  {id:'comida', label:'🍎 Comida'},
+  {id:'juego', label:'🎮 Game'},
+  {id:'estrellas', label:'⭐ Favoritos'},
+];
+const tabBar = document.getElementById('tabBar');
+TABS.forEach(t=>{
+  const btn = document.createElement('button');
+  btn.textContent = t.label;
+  btn.dataset.tab = t.id;
+  if(t.id==='inicio') btn.classList.add('active');
+  btn.addEventListener('click', ()=>showPanel(t.id));
+  tabBar.appendChild(btn);
+});
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.panel===id));
+  document.querySelectorAll('#tabBar button').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+  if(id==='estrellas') renderFavorites();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.querySelectorAll('.mode-chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>showPanel(chip.dataset.goto));
+});
+
+/* ---------------- GAMES ---------------- */
+const gameArea = document.getElementById('gameArea');
+
+function allVocab(){ return Object.values(DATA).flat(); }
+
+document.getElementById('startQuiz').addEventListener('click', startQuiz);
+document.getElementById('startMatch').addEventListener('click', startMatch);
+
+let quizState = null;
+function startQuiz(){
+  const pool = shuffle(allVocab()).slice(0, 8);
+  quizState = { pool, index:0, score:0 };
+  renderQuizQuestion();
+}
+function renderQuizQuestion(){
+  if(quizState.index >= quizState.pool.length){
+    const earned = quizState.score;
+    addStars(earned);
+    gameArea.innerHTML = `<div class="game-status">🎉 You got ${quizState.score} / ${quizState.pool.length} right! You earned ${earned} ⭐</div>
+      <button class="big-btn" id="playAgain">Play again</button>`;
+    document.getElementById('playAgain').addEventListener('click', startQuiz);
+    return;
+  }
+  const item = quizState.pool[quizState.index];
+  const distractors = shuffle(allVocab().filter(v=>v.es!==item.es)).slice(0,3);
+  const options = shuffle([item, ...distractors]);
+  gameArea.innerHTML = `
+    <div class="game-status">Question ${quizState.index+1} of ${quizState.pool.length} — Score: ${quizState.score}</div>
+    <div class="quiz-emoji">${item.e}</div>
+    <p style="color:var(--ink-soft);margin-bottom:14px;">How do you say this in Spanish?</p>
+    <div class="quiz-options"></div>
+  `;
+  const optWrap = gameArea.querySelector('.quiz-options');
+  options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.textContent = opt.es;
+    btn.addEventListener('click', ()=>{
+      speak(item.es);
+      const correct = opt.es===item.es;
+      btn.classList.add(correct?'correct':'wrong');
+      if(correct) quizState.score++;
+      [...optWrap.children].forEach(b=>b.disabled=true);
+      setTimeout(()=>{ quizState.index++; renderQuizQuestion(); }, 900);
+    });
+    optWrap.appendChild(btn);
+  });
+}
+
+function startMatch(){
+  const items = shuffle(allVocab()).slice(0,6);
+  const left = shuffle(items.map(i=>({...i, side:'es'})));
+  const right = shuffle(items.map(i=>({...i, side:'en'})));
+  let selected = null;
+  let matched = 0;
+  gameArea.innerHTML = `<div class="game-status">Match the Spanish word to its English meaning</div><div class="match-grid"><div class="match-col" id="colLeft"></div><div class="match-col" id="colRight"></div></div>`;
+  const colLeft = gameArea.querySelector('#colLeft');
+  const colRight = gameArea.querySelector('#colRight');
+  left.forEach(item=>{
+    const div = document.createElement('div');
+    div.className='match-item'; div.textContent = item.es; div.dataset.es = item.es;
+    div.addEventListener('click', ()=>handlePick(div, item, 'es'));
+    colLeft.appendChild(div);
+  });
+  right.forEach(item=>{
+    const div = document.createElement('div');
+    div.className='match-item'; div.textContent = item.en; div.dataset.es = item.es;
+    div.addEventListener('click', ()=>handlePick(div, item, 'en'));
+    colRight.appendChild(div);
+  });
+  function handlePick(div, item, side){
+    if(div.classList.contains('correct')) return;
+    if(!selected){ selected = {div, item, side}; div.classList.add('selected'); return; }
+    if(selected.side === side){ selected.div.classList.remove('selected'); selected = {div, item, side}; div.classList.add('selected'); return; }
+    if(selected.item.es === item.es){
+      selected.div.classList.add('correct'); selected.div.classList.remove('selected');
+      div.classList.add('correct');
+      speak(item.es);
+      matched++;
+      selected = null;
+      if(matched === items.length){
+        addStars(3);
+        setTimeout(()=>{ gameArea.insertAdjacentHTML('beforeend', `<p class="game-status" style="margin-top:16px;">🎉 All matched! You earned 3 ⭐</p>`); }, 300);
+      }
+    } else {
+      div.classList.add('shake'); selected.div.classList.add('shake');
+      setTimeout(()=>{ div.classList.remove('shake','selected'); selected.div.classList.remove('shake','selected'); selected=null; }, 400);
+    }
+  }
+}
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spanish Grammar Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#1D4E4B;
+    --teal-dark:#123332;
+    --terracotta:#C1502E;
+    --gold:#C9A227;
+    --parchment:#F7F3EC;
+    --card:#FFFFFF;
+    --ink:#24211E;
+    --ink-soft:#6b665c;
+    --line:#E4DCC8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3{font-family:'Source Serif 4',serif;font-weight:600;margin:0 0 10px;}
+  a{color:var(--terracotta);}
+  main{max-width:880px;margin:0 auto;padding:0 5vw 80px;}
+
+  header.top{
+    background:var(--teal);
+    color:#fff;
+    padding:14px 5vw;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    position:sticky;top:0;z-index:20;
+  }
+  .brand{font-family:'Source Serif 4',serif;font-size:1.25rem;display:flex;align-items:center;gap:10px;}
+  .brand small{font-family:'Work Sans',sans-serif;font-weight:400;opacity:.75;font-size:0.78rem;}
+  .points{background:var(--gold);color:#3c2f06;font-weight:700;padding:6px 14px;border-radius:999px;font-size:0.9rem;white-space:nowrap;}
+
+  nav.tabs{
+    display:flex;gap:6px;overflow-x:auto;padding:10px 5vw;
+    background:var(--teal-dark);position:sticky;top:58px;z-index:19;
+    -webkit-overflow-scrolling:touch;
+  }
+  nav.tabs button{
+    font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.86rem;
+    background:transparent;color:#dce8e6;border:1px solid rgba(255,255,255,0.25);
+    padding:7px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;
+  }
+  nav.tabs button.active{background:var(--terracotta);border-color:var(--terracotta);color:#fff;}
+  nav.tabs button:hover{border-color:var(--gold);}
+
+  section.panel{display:none;padding-top:26px;}
+  section.panel.active{display:block;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin-bottom:20px;}
+  .card h2{color:var(--teal-dark);font-size:1.5rem;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .card h3{font-size:1.1rem;color:var(--terracotta);margin-top:22px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .lede{color:var(--ink-soft);font-size:1.02rem;}
+
+  .note{border-left:4px solid var(--teal);background:#eef4f3;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:0.94rem;}
+  .note-pl{border-color:#B23A48;background:#fbecee;}
+  .note-en{border-color:#3568A6;background:#ecf1fa;}
+  .note b{display:inline-block;margin-right:4px;}
+
+  table.gtable{width:100%;border-collapse:collapse;margin:14px 0;font-size:0.95rem;}
+  table.gtable th, table.gtable td{border:1px solid var(--line);padding:8px 10px;text-align:left;}
+  table.gtable th{background:#f1ece0;font-family:'Source Serif 4',serif;font-weight:600;}
+  table.gtable td.es{font-weight:600;color:var(--teal-dark);}
+
+  .say{
+    background:var(--teal);color:#fff;border:none;border-radius:50%;
+    width:26px;height:26px;font-size:0.8rem;cursor:pointer;vertical-align:middle;margin-left:4px;
+    display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .say:hover{background:var(--terracotta);}
+  .say.sm{width:22px;height:22px;font-size:0.7rem;}
+  .bm{background:transparent;border:none;font-size:0.95rem;cursor:pointer;color:#cbbf9e;vertical-align:middle;margin-left:2px;}
+  .bm.saved{color:var(--gold);}
+
+  .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:14px 0;}
+  .vocab-item{
+    border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+    display:flex;align-items:center;justify-content:space-between;gap:6px;background:#fbfaf6;
+  }
+  .vocab-item .txt{font-size:0.94rem;}
+  .vocab-item .txt .es{font-weight:600;color:var(--teal-dark);}
+  .vocab-item .txt .en{color:var(--ink-soft);display:block;font-size:0.85rem;}
+  .vocab-item .btns{display:flex;align-items:center;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;background:var(--terracotta);color:#fff;
+    border:none;padding:10px 18px;border-radius:8px;font-weight:600;cursor:pointer;font-size:0.95rem;
+  }
+  .btn:hover{background:#a3421f;}
+  .btn.ghost{background:transparent;color:var(--teal-dark);border:1.5px solid var(--teal);}
+  .btn.ghost:hover{background:#eef4f3;}
+  .btn.small{padding:7px 12px;font-size:0.85rem;}
+
+  .game-status{font-family:'Source Serif 4',serif;font-size:1.15rem;margin-bottom:14px;color:var(--teal-dark);}
+  .opt-list{display:grid;gap:8px;max-width:520px;}
+  .opt-list button{
+    text-align:left;padding:12px 16px;border-radius:8px;border:1.5px solid var(--line);
+    background:#fbfaf6;cursor:pointer;font-size:0.96rem;font-family:'Work Sans',sans-serif;
+  }
+  .opt-list button:hover{border-color:var(--teal);}
+  .opt-list button.correct{background:#e3f1e0;border-color:#5FAE55;}
+  .opt-list button.wrong{background:#fbe4e0;border-color:var(--terracotta);}
+  .explain{margin-top:12px;font-size:0.92rem;color:var(--ink-soft);background:#f1ece0;padding:10px 14px;border-radius:8px;display:none;}
+  .explain.show{display:block;}
+
+  .exercise-picker{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+
+  /* Puzzle / number-building box */
+  .puzzle-box{background:#fbf3e2;border:2px dashed var(--gold);border-radius:14px;padding:18px 20px;margin:16px 0;}
+  .puzzle-example{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:10px;font-weight:600;}
+  .puzzle-example .piece{background:#fff;border:1.5px solid var(--teal);border-radius:8px;padding:4px 9px;}
+  .puzzle-example .plus,.puzzle-example .equals{color:var(--ink-soft);font-weight:500;}
+  .puzzle-example .answer{background:var(--teal);color:#fff;border-radius:8px;padding:4px 9px;display:inline-flex;align-items:center;gap:4px;}
+  .puzzle-example .answer .say{background:rgba(255,255,255,0.25);}
+  .puzzle-example .means{color:var(--ink-soft);font-weight:500;font-size:0.88rem;}
+
+  /* Time widget */
+  .time-widget{display:flex;gap:24px;flex-wrap:wrap;align-items:stretch;margin:14px 0;}
+  .time-controls{flex:1;min-width:220px;background:#f1ece0;border-radius:14px;padding:18px;text-align:center;}
+  .digital{font-family:'Source Serif 4',serif;font-size:2.4rem;color:var(--teal-dark);margin-bottom:4px;}
+  .digital12{color:var(--ink-soft);font-size:1rem;margin-bottom:14px;}
+  .btn-row{display:flex;gap:8px;justify-content:center;margin-bottom:8px;}
+  .btn-row button{
+    background:var(--teal);color:#fff;border:none;border-radius:8px;padding:9px 14px;font-weight:600;cursor:pointer;font-size:0.9rem;
+  }
+  .btn-row button:hover{background:var(--terracotta);}
+  .time-output{flex:1.4;min-width:260px;background:#fbfaf6;border:1.5px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .time-output .main-phrase{font-size:1.2rem;font-weight:600;color:var(--teal-dark);margin-bottom:6px;}
+  .time-output .alt-phrase{color:var(--ink-soft);font-size:0.88rem;margin-bottom:10px;}
+  .time-output .en-phrase{color:var(--ink-soft);margin-bottom:14px;}
+
+  /* Context blocks: expressions / text / dialogue */
+  .ctx-card{border-top:3px solid var(--gold);margin-top:26px;}
+  .expr-list{display:grid;gap:8px;margin:10px 0 4px;}
+  .expr-item{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--line);border-radius:8px;padding:9px 13px;background:#fbfaf6;}
+  .expr-item .es{font-weight:600;color:var(--teal-dark);}
+  .expr-item .en{color:var(--ink-soft);font-size:0.86rem;}
+  .text-block p{margin:0;}
+  .text-sentence{margin-right:3px;}
+  .text-en{color:var(--ink-soft);font-size:0.9rem;margin-top:10px;font-style:italic;}
+  .dialogo{display:flex;flex-direction:column;gap:9px;margin-top:8px;}
+  .dial-line{display:flex;gap:8px;align-items:flex-start;}
+  .dial-who{font-weight:700;color:var(--teal-dark);min-width:20px;}
+  .dial-bubble{background:#eef4f3;border-radius:10px;padding:9px 13px;flex:1;}
+  .dial-bubble.b{background:#fdf1e6;}
+  .dial-bubble .en{display:block;color:var(--ink-soft);font-size:0.84rem;margin-top:3px;}
+
+  footer{text-align:center;color:var(--ink-soft);font-size:0.85rem;padding:10px 5vw 40px;}
+
+  @media (max-width:560px){
+    .brand{font-size:1.05rem;}
+    .card{padding:18px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">🌿 Spanish Grammar Lab <small>for grown-ups</small></div>
+  <div class="points">📘 <span id="ptCount">0</span> points</div>
+</header>
+
+<nav class="tabs" id="tabBar"></nav>
+
+<main>
+
+<section class="panel active" data-panel="inicio">
+  <div class="card">
+    <h2>Bienvenido — Welcome <button class="say" data-text="Bienvenido">🔊</button></h2>
+    <p class="lede">This is the grown-up companion to the kids' page: same everyday topics, but with the grammar underneath so you understand <em>why</em> Spanish works the way it does — not just isolated words.</p>
+    <p>All translations here are into English. Where it helps, notes compare Spanish to <strong>Polish</strong> or <strong>English</strong>, since your own languages are the fastest shortcut to understanding a new one. Click any 🔊 to hear a word or sentence spoken aloud, and 🔖 to save something to <strong>Mi glosario</strong> for later review.</p>
+    <div class="note"><b>🗺️ How to use this:</b> Go roughly in tab order the first time — pronunciation and gender come first because almost everything else depends on them. After that, dip in wherever you need a refresher, and use <strong>Ejercicios</strong> to test yourself.</div>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0;">On this page</h3>
+    <table class="gtable" id="onThisPageTable"></table>
+  </div>
+  <div class="card">
+    <h3 style="margin-top:0;">🔊 Voice</h3>
+    <p style="margin-top:0;">Pick the clearest Spanish voice available in your browser — used only as a fallback for anything that doesn't have a pre-generated recording yet (quality varies by device; Chrome and Edge usually have the best selection).</p>
+    <select id="voiceSelect" style="font-family:'Work Sans',sans-serif;font-weight:600;padding:8px 12px;border-radius:8px;border:1.5px solid var(--line);"></select>
+  </div>
+</section>
+
+<!-- ================= PRONUNCIACIÓN ================= -->
+<section class="panel" data-panel="pron">
+  <div class="card">
+    <h2>Pronunciación <button class="say" data-text="Pronunciación">🔊</button></h2>
+    <p class="lede">Spanish spelling is far more consistent than English — once you know the rules, you can read almost any word correctly on sight.</p>
+    <div class="note note-pl"><b>🇵🇱</b> Spanish vowels are short, pure, and always sound the same — much like Polish vowels. There's no equivalent of English's sliding "long a" in <em>cake</em> or the schwa in <em>about</em>.</div>
+    <h3>The five vowels</h3>
+    <div class="vocab-grid" id="vowelGrid"></div>
+    <h3>Letters that don't sound like they look</h3>
+    <table class="gtable">
+      <tr><th>Letter(s)</th><th>Sounds like</th><th>Example</th></tr>
+      <tr><td>h</td><td>always silent</td><td class="es">hola <button class="say" data-text="hola">🔊</button></td></tr>
+      <tr><td>j, and g before e/i</td><td>a harsh "h" — close to the Polish "ch" in <em>chleb</em></td><td class="es">jugo <button class="say" data-text="jugo">🔊</button>, gente <button class="say" data-text="gente">🔊</button></td></tr>
+      <tr><td>ll</td><td>like English "y" in most dialects</td><td class="es">llama <button class="say" data-text="llama">🔊</button></td></tr>
+      <tr><td>ñ</td><td>like the Polish "ń" in <em>koń</em></td><td class="es">niño <button class="say" data-text="niño">🔊</button></td></tr>
+      <tr><td>rr, and r at word start</td><td>strongly rolled/trilled</td><td class="es">perro <button class="say" data-text="perro">🔊</button></td></tr>
+      <tr><td>c before e/i, and z</td><td>"s" in Latin America; "th" (as in <em>think</em>) in most of Spain</td><td class="es">cielo <button class="say" data-text="cielo">🔊</button>, zapato <button class="say" data-text="zapato">🔊</button></td></tr>
+      <tr><td>qu</td><td>always a hard "k", never "kw"</td><td class="es">queso <button class="say" data-text="queso">🔊</button></td></tr>
+      <tr><td>v</td><td>pronounced like "b" in most dialects</td><td class="es">vaca <button class="say" data-text="vaca">🔊</button></td></tr>
+    </table>
+    <h3>Where's the stress?</h3>
+    <p>Three simple rules — a written accent (´) always overrides them:</p>
+    <table class="gtable">
+      <tr><th>Word ends in…</th><th>Stress falls on…</th><th>Example</th></tr>
+      <tr><td>a vowel, -n, or -s</td><td>the second-to-last syllable</td><td class="es">hablan <button class="say" data-text="hablan">🔊</button>, casa <button class="say" data-text="casa">🔊</button></td></tr>
+      <tr><td>any other consonant</td><td>the last syllable</td><td class="es">español <button class="say" data-text="español">🔊</button>, ciudad <button class="say" data-text="ciudad">🔊</button></td></tr>
+      <tr><td>has a written accent</td><td>wherever the accent mark is</td><td class="es">teléfono <button class="say" data-text="teléfono">🔊</button>, nación <button class="say" data-text="nación">🔊</button></td></tr>
+    </table>
+  </div>
+  <div class="card ctx-card" id="ctx-pron"></div>
+</section>
+
+<!-- ================= GÉNERO ================= -->
+<section class="panel" data-panel="genero">
+  <div class="card">
+    <h2>Género y artículos — Gender & articles <button class="say" data-text="Género y artículos">🔊</button></h2>
+    <p class="lede">Every Spanish noun is grammatically <strong>masculine</strong> or <strong>feminine</strong> — even for objects with no natural gender.</p>
+    <div class="note note-pl"><b>🇵🇱</b> This will feel familiar: Polish also assigns gender to every noun (<em>stół</em> is masculine, <em>lampa</em> feminine), though the endings that signal it are different.</div>
+    <div class="note note-en"><b>🇬🇧</b> English dropped grammatical gender centuries ago — "the table" and "the lamp" use the same article. In Spanish they don't.</div>
+    <h3>Spotting the gender</h3>
+    <table class="gtable">
+      <tr><th>Typical ending</th><th>Usually</th><th>Example</th></tr>
+      <tr><td>-o</td><td>masculine</td><td class="es">el libro <button class="say" data-text="el libro">🔊</button> (the book)</td></tr>
+      <tr><td>-a</td><td>feminine</td><td class="es">la mesa <button class="say" data-text="la mesa">🔊</button> (the table)</td></tr>
+      <tr><td>-ción, -sión, -dad</td><td>feminine</td><td class="es">la nación <button class="say" data-text="la nación">🔊</button>, la ciudad <button class="say" data-text="la ciudad">🔊</button></td></tr>
+    </table>
+    <div class="note">Common exceptions worth memorizing early: <span class="es">el día</span> <button class="say" data-text="el día">🔊</button> (the day, masculine) and <span class="es">la mano</span> <button class="say" data-text="la mano">🔊</button> (the hand, feminine).</div>
+    <h3>Articles</h3>
+    <table class="gtable">
+      <tr><th></th><th>Definite ("the")</th><th>Indefinite ("a/an", "some")</th></tr>
+      <tr><td>masculine singular</td><td class="es">el libro <button class="say" data-text="el libro">🔊</button></td><td class="es">un libro <button class="say" data-text="un libro">🔊</button></td></tr>
+      <tr><td>feminine singular</td><td class="es">la mesa <button class="say" data-text="la mesa">🔊</button></td><td class="es">una mesa <button class="say" data-text="una mesa">🔊</button></td></tr>
+      <tr><td>masculine plural</td><td class="es">los libros <button class="say" data-text="los libros">🔊</button></td><td class="es">unos libros <button class="say" data-text="unos libros">🔊</button></td></tr>
+      <tr><td>feminine plural</td><td class="es">las mesas <button class="say" data-text="las mesas">🔊</button></td><td class="es">unas mesas <button class="say" data-text="unas mesas">🔊</button></td></tr>
+    </table>
+    <h3>Making plurals</h3>
+    <p>Ends in a vowel → add <strong>-s</strong> (<span class="es">casa</span> <button class="say" data-text="casa">🔊</button> → <span class="es">casas</span> <button class="say" data-text="casas">🔊</button>). Ends in a consonant → add <strong>-es</strong> (<span class="es">ciudad</span> <button class="say" data-text="ciudad">🔊</button> → <span class="es">ciudades</span> <button class="say" data-text="ciudades">🔊</button>).</p>
+  </div>
+  <div class="card ctx-card" id="ctx-genero"></div>
+</section>
+
+<!-- ================= PRONOMBRES / SER-ESTAR ================= -->
+<section class="panel" data-panel="pronombres">
+  <div class="card">
+    <h2>Pronombres — Subject pronouns <button class="say" data-text="Pronombres">🔊</button></h2>
+    <table class="gtable">
+      <tr><th>Spanish</th><th>English</th></tr>
+      <tr><td class="es">yo <button class="say" data-text="yo">🔊</button></td><td>I</td></tr>
+      <tr><td class="es">tú <button class="say" data-text="tú">🔊</button></td><td>you (informal, singular)</td></tr>
+      <tr><td class="es">él <button class="say" data-text="él">🔊</button> / ella <button class="say" data-text="ella">🔊</button> / usted <button class="say" data-text="usted">🔊</button></td><td>he / she / you (formal)</td></tr>
+      <tr><td class="es">nosotros <button class="say" data-text="nosotros">🔊</button> / nosotras <button class="say" data-text="nosotras">🔊</button></td><td>we</td></tr>
+      <tr><td class="es">vosotros <button class="say" data-text="vosotros">🔊</button> / vosotras <button class="say" data-text="vosotras">🔊</button></td><td>you all (informal — mainly Spain)</td></tr>
+      <tr><td class="es">ellos <button class="say" data-text="ellos">🔊</button> / ellas <button class="say" data-text="ellas">🔊</button> / ustedes <button class="say" data-text="ustedes">🔊</button></td><td>they / you all (formal, or all regions outside Spain)</td></tr>
+    </table>
+    <div class="note note-pl"><b>🇵🇱</b> Spanish and Polish are both "pro-drop" languages: the verb ending already tells you who's acting, so the pronoun is often left out. <span class="es">Hablo español</span> <button class="say" data-text="Hablo español">🔊</button> already means "I speak Spanish" — no <span class="es">yo</span> needed, just as <em>Mówię po hiszpańsku</em> needs no <em>ja</em>.</div>
+    <div class="note note-en"><b>🇬🇧</b> English can't drop its pronouns — "Speak Spanish" on its own doesn't tell you who.</div>
+
+    <h2 style="margin-top:32px;">Ser vs. Estar — two verbs for "to be" <button class="say" data-text="Ser vs Estar">🔊</button></h2>
+    <p class="lede">English "to be" and Polish "być" each do one job. Spanish splits it in two.</p>
+    <table class="gtable">
+      <tr><th></th><th><span class="es">ser</span> — identity, characteristics</th><th><span class="es">estar</span> — state, location</th></tr>
+      <tr><td>yo</td><td class="es">soy <button class="say sm" data-text="soy">🔊</button></td><td class="es">estoy <button class="say sm" data-text="estoy">🔊</button></td></tr>
+      <tr><td>tú</td><td class="es">eres <button class="say sm" data-text="eres">🔊</button></td><td class="es">estás <button class="say sm" data-text="estás">🔊</button></td></tr>
+      <tr><td>él/ella/usted</td><td class="es">es <button class="say sm" data-text="es">🔊</button></td><td class="es">está <button class="say sm" data-text="está">🔊</button></td></tr>
+      <tr><td>nosotros</td><td class="es">somos <button class="say sm" data-text="somos">🔊</button></td><td class="es">estamos <button class="say sm" data-text="estamos">🔊</button></td></tr>
+      <tr><td>vosotros</td><td class="es">sois <button class="say sm" data-text="sois">🔊</button></td><td class="es">estáis <button class="say sm" data-text="estáis">🔊</button></td></tr>
+      <tr><td>ellos/ustedes</td><td class="es">son <button class="say sm" data-text="son">🔊</button></td><td class="es">están <button class="say sm" data-text="están">🔊</button></td></tr>
+    </table>
+    <table class="gtable">
+      <tr><th>Use <span class="es">ser</span> for…</th><th>Use <span class="es">estar</span> for…</th></tr>
+      <tr><td class="es">Soy profesor. <button class="say sm" data-text="Soy profesor.">🔊</button><br><span style="color:var(--ink-soft);font-weight:400;">(I am a teacher — profession)</span></td><td class="es">Estoy cansado. <button class="say sm" data-text="Estoy cansado.">🔊</button><br><span style="color:var(--ink-soft);font-weight:400;">(I am tired — temporary state)</span></td></tr>
+      <tr><td class="es">Es alto. <button class="say sm" data-text="Es alto.">🔊</button><br><span style="color:var(--ink-soft);font-weight:400;">(He is tall — inherent trait)</span></td><td class="es">Está en casa. <button class="say sm" data-text="Está en casa.">🔊</button><br><span style="color:var(--ink-soft);font-weight:400;">(She is at home — location)</span></td></tr>
+      <tr><td class="es">Es de Polonia. <button class="say sm" data-text="Es de Polonia.">🔊</button><br><span style="color:var(--ink-soft);font-weight:400;">(He is from Poland — origin)</span></td><td class="es">Está enfermo. <button class="say sm" data-text="Está enfermo.">🔊</button><br><span style="color:var(--ink-soft);font-weight:400;">(He is sick — changeable condition)</span></td></tr>
+    </table>
+    <div class="note">Same adjective, different meaning: <span class="es">Es aburrido</span> <button class="say sm" data-text="Es aburrido.">🔊</button> = "He is boring" (a trait). <span class="es">Está aburrido</span> <button class="say sm" data-text="Está aburrido.">🔊</button> = "He is bored" (right now). This distinction doesn't exist in English or Polish, so it takes deliberate practice.</div>
+  </div>
+  <div class="card ctx-card" id="ctx-pronombres"></div>
+</section>
+
+<!-- ================= PRESENTE ================= -->
+<section class="panel" data-panel="presente">
+  <div class="card">
+    <h2>El presente — Present tense <button class="say" data-text="El presente">🔊</button></h2>
+    <p class="lede">Regular verbs fall into three families by their infinitive ending: <strong>-ar</strong>, <strong>-er</strong>, <strong>-ir</strong>. Drop the ending and add these:</p>
+    <table class="gtable">
+      <tr><th></th><th class="es">hablar (to speak)</th><th class="es">comer (to eat)</th><th class="es">vivir (to live)</th></tr>
+      <tr><td>yo</td><td class="es">hablo <button class="say sm" data-text="hablo">🔊</button></td><td class="es">como <button class="say sm" data-text="como">🔊</button></td><td class="es">vivo <button class="say sm" data-text="vivo">🔊</button></td></tr>
+      <tr><td>tú</td><td class="es">hablas <button class="say sm" data-text="hablas">🔊</button></td><td class="es">comes <button class="say sm" data-text="comes">🔊</button></td><td class="es">vives <button class="say sm" data-text="vives">🔊</button></td></tr>
+      <tr><td>él/ella/usted</td><td class="es">habla <button class="say sm" data-text="habla">🔊</button></td><td class="es">come <button class="say sm" data-text="come">🔊</button></td><td class="es">vive <button class="say sm" data-text="vive">🔊</button></td></tr>
+      <tr><td>nosotros</td><td class="es">hablamos <button class="say sm" data-text="hablamos">🔊</button></td><td class="es">comemos <button class="say sm" data-text="comemos">🔊</button></td><td class="es">vivimos <button class="say sm" data-text="vivimos">🔊</button></td></tr>
+      <tr><td>vosotros</td><td class="es">habláis <button class="say sm" data-text="habláis">🔊</button></td><td class="es">coméis <button class="say sm" data-text="coméis">🔊</button></td><td class="es">vivís <button class="say sm" data-text="vivís">🔊</button></td></tr>
+      <tr><td>ellos/ustedes</td><td class="es">hablan <button class="say sm" data-text="hablan">🔊</button></td><td class="es">comen <button class="say sm" data-text="comen">🔊</button></td><td class="es">viven <button class="say sm" data-text="viven">🔊</button></td></tr>
+    </table>
+    <h3>Key irregular verbs</h3>
+    <table class="gtable">
+      <tr><th></th><th class="es">ser</th><th class="es">tener</th><th class="es">ir</th><th class="es">hacer</th><th class="es">querer</th></tr>
+      <tr><td>yo</td><td class="es">soy <button class="say sm" data-text="soy">🔊</button></td><td class="es">tengo <button class="say sm" data-text="tengo">🔊</button></td><td class="es">voy <button class="say sm" data-text="voy">🔊</button></td><td class="es">hago <button class="say sm" data-text="hago">🔊</button></td><td class="es">quiero <button class="say sm" data-text="quiero">🔊</button></td></tr>
+      <tr><td>tú</td><td class="es">eres <button class="say sm" data-text="eres">🔊</button></td><td class="es">tienes <button class="say sm" data-text="tienes">🔊</button></td><td class="es">vas <button class="say sm" data-text="vas">🔊</button></td><td class="es">haces <button class="say sm" data-text="haces">🔊</button></td><td class="es">quieres <button class="say sm" data-text="quieres">🔊</button></td></tr>
+      <tr><td>él/ella/usted</td><td class="es">es <button class="say sm" data-text="es">🔊</button></td><td class="es">tiene <button class="say sm" data-text="tiene">🔊</button></td><td class="es">va <button class="say sm" data-text="va">🔊</button></td><td class="es">hace <button class="say sm" data-text="hace">🔊</button></td><td class="es">quiere <button class="say sm" data-text="quiere">🔊</button></td></tr>
+      <tr><td>nosotros</td><td class="es">somos <button class="say sm" data-text="somos">🔊</button></td><td class="es">tenemos <button class="say sm" data-text="tenemos">🔊</button></td><td class="es">vamos <button class="say sm" data-text="vamos">🔊</button></td><td class="es">hacemos <button class="say sm" data-text="hacemos">🔊</button></td><td class="es">queremos <button class="say sm" data-text="queremos">🔊</button></td></tr>
+      <tr><td>ellos/ustedes</td><td class="es">son <button class="say sm" data-text="son">🔊</button></td><td class="es">tienen <button class="say sm" data-text="tienen">🔊</button></td><td class="es">van <button class="say sm" data-text="van">🔊</button></td><td class="es">hacen <button class="say sm" data-text="hacen">🔊</button></td><td class="es">quieren <button class="say sm" data-text="quieren">🔊</button></td></tr>
+    </table>
+    <h3>Two constructions worth learning immediately</h3>
+    <table class="gtable">
+      <tr><td class="es">tener que + infinitive <button class="say sm" data-text="tener que">🔊</button></td><td>to have to do something — <em>Tengo que estudiar.</em> <button class="say sm" data-text="Tengo que estudiar.">🔊</button> (I have to study.)</td></tr>
+      <tr><td class="es">ir a + infinitive <button class="say sm" data-text="ir a">🔊</button></td><td>going to do something (near future) — <em>Voy a comer.</em> <button class="say sm" data-text="Voy a comer.">🔊</button> (I'm going to eat.)</td></tr>
+    </table>
+  </div>
+  <div class="card ctx-card" id="ctx-presente"></div>
+</section>
+
+<!-- ================= ESTRUCTURAS ================= -->
+<section class="panel" data-panel="estructuras">
+  <div class="card">
+    <h2>Preguntas — Question words <button class="say" data-text="Preguntas">🔊</button></h2>
+    <div class="vocab-grid" id="questionGrid"></div>
+    <div class="note">Spanish questions open with an upside-down question mark: <span class="es">¿Dónde vives?</span> <button class="say" data-text="¿Dónde vives?">🔊</button> — this signals a question is coming before you even reach the end.</div>
+  </div>
+  <div class="card">
+    <h2>Adjetivos — Adjective agreement & position <button class="say" data-text="Adjetivos">🔊</button></h2>
+    <div class="note note-en"><b>🇬🇧🇵🇱</b> In English and Polish, adjectives normally come <em>before</em> the noun: "red car" / "czerwony samochód". In Spanish, most descriptive adjectives come <em>after</em>: <span class="es">coche rojo</span>.</div>
+    <p>Adjectives also change to match the noun's gender and number:</p>
+    <table class="gtable">
+      <tr><th></th><th>masculine</th><th>feminine</th></tr>
+      <tr><td>singular</td><td class="es">coche rojo <button class="say sm" data-text="coche rojo">🔊</button></td><td class="es">casa roja <button class="say sm" data-text="casa roja">🔊</button></td></tr>
+      <tr><td>plural</td><td class="es">coches rojos <button class="say sm" data-text="coches rojos">🔊</button></td><td class="es">casas rojas <button class="say sm" data-text="casas rojas">🔊</button></td></tr>
+    </table>
+    <div class="note">Adjectives ending in <strong>-e</strong> or a consonant don't change for gender, only number: <span class="es">grande</span> <button class="say sm" data-text="grande">🔊</button> → <span class="es">grandes</span> <button class="say sm" data-text="grandes">🔊</button>, <span class="es">fácil</span> <button class="say sm" data-text="fácil">🔊</button> → <span class="es">fáciles</span> <button class="say sm" data-text="fáciles">🔊</button>.</div>
+  </div>
+  <div class="card">
+    <h2>Posesivos — Possessives <button class="say" data-text="Posesivos">🔊</button></h2>
+    <table class="gtable">
+      <tr><th>Spanish</th><th>English</th></tr>
+      <tr><td class="es">mi <button class="say sm" data-text="mi">🔊</button> / mis <button class="say sm" data-text="mis">🔊</button></td><td>my</td></tr>
+      <tr><td class="es">tu <button class="say sm" data-text="tu">🔊</button> / tus <button class="say sm" data-text="tus">🔊</button></td><td>your (informal)</td></tr>
+      <tr><td class="es">su <button class="say sm" data-text="su">🔊</button> / sus <button class="say sm" data-text="sus">🔊</button></td><td>his / her / your (formal) / their</td></tr>
+      <tr><td class="es">nuestro <button class="say sm" data-text="nuestro">🔊</button> / nuestra <button class="say sm" data-text="nuestra">🔊</button> / nuestros <button class="say sm" data-text="nuestros">🔊</button> / nuestras <button class="say sm" data-text="nuestras">🔊</button></td><td>our</td></tr>
+      <tr><td class="es">vuestro <button class="say sm" data-text="vuestro">🔊</button> / vuestra <button class="say sm" data-text="vuestra">🔊</button> / vuestros <button class="say sm" data-text="vuestros">🔊</button> / vuestras <button class="say sm" data-text="vuestras">🔊</button></td><td>your (plural, Spain)</td></tr>
+    </table>
+    <div class="note">Only <span class="es">nuestro</span> and <span class="es">vuestro</span> change for gender (<span class="es">nuestra casa</span> <button class="say sm" data-text="nuestra casa">🔊</button>); the others just add -s for plural.</div>
+  </div>
+  <div class="card ctx-card" id="ctx-estructuras"></div>
+</section>
+
+<!-- ================= FRASES ================= -->
+<section class="panel" data-panel="frases">
+  <div class="card">
+    <h2>Frases y saludos — Everyday phrases <button class="say" data-text="Frases y saludos">🔊</button></h2>
+    <div class="note note-pl"><b>🇵🇱</b> Spanish has a formal/informal "you" split, just like Polish <em>ty</em> vs. <em>pan/pani</em>: use <span class="es">tú</span> with friends, family, and children, and <span class="es">usted</span> with strangers, elders, or in business settings.</div>
+    <div class="note note-en"><b>🇬🇧</b> English lost this distinction entirely — "you" covers both, so this is one place your English instincts won't help.</div>
+    <div class="vocab-grid" id="phraseGrid"></div>
+  </div>
+  <div class="card ctx-card" id="ctx-frases"></div>
+</section>
+
+<!-- ================= NUMEROS / FECHA / HORA ================= -->
+<section class="panel" data-panel="numeros">
+  <div class="card">
+    <h2>Números — Counting <button class="say" data-text="Números">🔊</button></h2>
+    <div class="vocab-grid" id="numberGrid"></div>
+    <h3>Teens (11–19)</h3>
+    <div class="vocab-grid" id="teenGrid"></div>
+    <h3>Tens up to 100</h3>
+    <div class="vocab-grid" id="tensGrid"></div>
+
+    <h3>Números especiales — how compound numbers are built</h3>
+    <div class="puzzle-box">
+      <p style="margin-top:0;">From 31 onward, Spanish snaps a tens-word and a units-word together with <strong>y</strong> ("and") — two separate words:</p>
+      <div class="puzzle-example">
+        <span class="piece">cuarenta</span><span class="plus">+ y +</span><span class="piece">cuatro</span><span class="equals">=</span>
+        <span class="answer">cuarenta y cuatro <button class="say sm" data-text="cuarenta y cuatro">🔊</button></span><span class="means">(44)</span>
+      </div>
+      <div class="puzzle-example">
+        <span class="piece">ochenta</span><span class="plus">+ y +</span><span class="piece">siete</span><span class="equals">=</span>
+        <span class="answer">ochenta y siete <button class="say sm" data-text="ochenta y siete">🔊</button></span><span class="means">(87)</span>
+      </div>
+      <div class="puzzle-example">
+        <span class="piece">noventa</span><span class="plus">+ y +</span><span class="piece">nueve</span><span class="equals">=</span>
+        <span class="answer">noventa y nueve <button class="say sm" data-text="noventa y nueve">🔊</button></span><span class="means">(99)</span>
+      </div>
+      <p style="margin-bottom:0;">But 16–29 fuse into a <em>single</em> word instead — a leftover of "diez y seis" (10 and 6) contracting over time into <span class="es">dieciséis</span> <button class="say sm" data-text="dieciséis">🔊</button>. Same for <span class="es">veintidós</span> <button class="say sm" data-text="veintidós">🔊</button> (22), <span class="es">veintiocho</span> <button class="say sm" data-text="veintiocho">🔊</button> (28). Neither English nor Polish does this — "twenty-two" and "dwadzieścia dwa" both stay as two clean words at every stage.</p>
+    </div>
+    <div class="note">One more quirk: <span class="es">veintiuno</span> <button class="say sm" data-text="veintiuno">🔊</button> (21) shortens to <span class="es">veintiún</span> <button class="say sm" data-text="veintiún">🔊</button> right before a noun — <span class="es">veintiún años</span> <button class="say sm" data-text="veintiún años">🔊</button> (21 years) — the same way <span class="es">uno</span> <button class="say sm" data-text="uno">🔊</button> shortens to <span class="es">un</span> <button class="say sm" data-text="un">🔊</button> before a masculine noun.</div>
+  </div>
+
+  <div class="card">
+    <h2>La hora — Telling time <button class="say" data-text="La hora">🔊</button></h2>
+    <table class="gtable">
+      <tr><td class="es">Es la una. <button class="say sm" data-text="Es la una.">🔊</button></td><td>It's one o'clock.</td></tr>
+      <tr><td class="es">Son las tres. <button class="say sm" data-text="Son las tres.">🔊</button></td><td>It's three o'clock.</td></tr>
+      <tr><td class="es">Son las tres y media. <button class="say sm" data-text="Son las tres y media.">🔊</button></td><td>It's half past three.</td></tr>
+      <tr><td class="es">Son las cuatro menos cuarto. <button class="say sm" data-text="Son las cuatro menos cuarto.">🔊</button></td><td>It's a quarter to four.</td></tr>
+    </table>
+    <div class="note">Note <span class="es">es la una</span> (singular, only for 1:00) versus <span class="es">son las…</span> (plural, every other hour) — the verb agrees with the number of hours. Minutes past the half hour are usually counted <em>down</em> from the next hour with <span class="es">menos</span> ("minus") rather than up from the current one — so 2:35 is "three minus twenty-five", not "two and thirty-five" (though you'll hear the simpler additive form too, especially in digital contexts).</div>
+
+    <h3>Try it: set any time</h3>
+    <p class="lede" style="margin-top:0;">Use the arrows to move in 5-minute steps (or whole hours) and see — and hear — how Spanish describes it, including tricky 24-hour times like 14:35.</p>
+    <div class="time-widget">
+      <div class="time-controls">
+        <div class="digital" id="digitalTime24">14:35</div>
+        <div class="digital12" id="digitalTime12">2:35 PM</div>
+        <div class="btn-row"><button id="hourDown">‹ hora</button><button id="hourUp">hora ›</button></div>
+        <div class="btn-row"><button id="minDown">‹ 5 min</button><button id="minUp">5 min ›</button></div>
+      </div>
+      <div class="time-output">
+        <div class="main-phrase" id="timePhraseMain"></div>
+        <div class="alt-phrase" id="timePhraseAlt"></div>
+        <div class="en-phrase">English: <span id="timePhraseEn"></span></div>
+        <button class="say" id="timeSayBtn" data-text="">🔊 Escuchar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Fechas — Dates <button class="say" data-text="Fechas">🔊</button></h2>
+    <p class="lede">Spanish reads a date as "the [day] of [month] of [year]" — and reads the year as one whole number, unlike English, which often splits it in two ("nineteen ninety-eight").</p>
+    <table class="gtable">
+      <tr><th>Written</th><th>Spoken</th></tr>
+      <tr><td>7 de enero de 1998</td><td class="es" id="dateEx1"></td></tr>
+      <tr><td>1 de mayo de 2000</td><td class="es" id="dateEx2"></td></tr>
+      <tr><td>21 de agosto de 1500</td><td class="es" id="dateEx3"></td></tr>
+      <tr><td>Hoy — today</td><td class="es" id="dateToday"></td></tr>
+    </table>
+    <div class="note">The 1st of the month is the one exception to using plain cardinal numbers: <span class="es">el primero de enero</span> <button class="say sm" data-text="el primero de enero">🔊</button> (in Spain you'll also hear <span class="es">el uno de enero</span> <button class="say sm" data-text="el uno de enero">🔊</button>). Every other day just uses the normal number: <span class="es">el veintiuno de agosto</span> <button class="say sm" data-text="el veintiuno de agosto">🔊</button>.</div>
+  </div>
+
+  <div class="card">
+    <h2>Días y meses — Days & months <button class="say" data-text="Días y meses">🔊</button></h2>
+    <div class="vocab-grid" id="dayGrid"></div>
+    <div class="vocab-grid" id="monthGrid" style="margin-top:6px;"></div>
+    <div class="note">Days and months are <strong>not</strong> capitalized in Spanish, unlike English: <span class="es">lunes</span> <button class="say sm" data-text="lunes">🔊</button>, <span class="es">enero</span> <button class="say sm" data-text="enero">🔊</button>.</div>
+  </div>
+  <div class="card ctx-card" id="ctx-numeros"></div>
+</section>
+
+<!-- ================= COLORES ================= -->
+<section class="panel" data-panel="colores">
+  <div class="card">
+    <h2>Colores — Colors <button class="say" data-text="Colores">🔊</button></h2>
+    <p class="lede">The same set your son is learning — with the extra shades and example sentences you'll actually need.</p>
+    <div class="vocab-grid" id="colorGridAdult"></div>
+    <h3>In a sentence</h3>
+    <div id="colorSentences"></div>
+  </div>
+  <div class="card ctx-card" id="ctx-colores"></div>
+</section>
+
+<!-- ================= ANIMALES ================= -->
+<section class="panel" data-panel="animales">
+  <div class="card">
+    <h2>Animales — Animals <button class="say" data-text="Animales">🔊</button></h2>
+    <div class="vocab-grid" id="animalGridAdult"></div>
+    <h3>In a sentence</h3>
+    <div id="animalSentences"></div>
+  </div>
+  <div class="card ctx-card" id="ctx-animales"></div>
+</section>
+
+<!-- ================= FAMILIA ================= -->
+<section class="panel" data-panel="familia">
+  <div class="card">
+    <h2>Familia — Family <button class="say" data-text="Familia">🔊</button></h2>
+    <div class="vocab-grid" id="familyGridAdult"></div>
+    <h3>In a sentence</h3>
+    <div id="familySentences"></div>
+  </div>
+  <div class="card ctx-card" id="ctx-familia"></div>
+</section>
+
+<!-- ================= COMIDA ================= -->
+<section class="panel" data-panel="comida">
+  <div class="card">
+    <h2>Comida — Food <button class="say" data-text="Comida">🔊</button></h2>
+    <div class="vocab-grid" id="foodGridAdult"></div>
+    <h3>In a sentence</h3>
+    <div id="foodSentences"></div>
+  </div>
+  <div class="card ctx-card" id="ctx-comida"></div>
+</section>
+
+<!-- ================= EJERCICIOS ================= -->
+<section class="panel" data-panel="ejercicios">
+  <div class="card">
+    <h2>Ejercicios — Test yourself <button class="say" data-text="Ejercicios">🔊</button></h2>
+    <p class="lede">Pick a format below. Points are just for your own tracking — no pressure.</p>
+    <div class="exercise-picker">
+      <button class="btn" id="startGap">✏️ Gap fill</button>
+      <button class="btn ghost" id="startMatch">🔗 Matching</button>
+      <button class="btn ghost" id="startError">🚫 Error correction</button>
+    </div>
+    <div id="exerciseArea"><p style="color:var(--ink-soft);">Choose an exercise type above to begin.</p></div>
+  </div>
+</section>
+
+<!-- ================= GLOSARIO ================= -->
+<section class="panel" data-panel="glosario">
+  <div class="card">
+    <h2>Mi glosario <button class="say" data-text="Mi glosario">🔊</button></h2>
+    <p class="lede">Everything you've bookmarked with 🔖 across this page.</p>
+    <div class="vocab-grid" id="glossaryGrid"></div>
+    <p id="noGlossary" style="color:var(--ink-soft);display:none;">Nothing saved yet — click any 🔖 icon on a word to add it here.</p>
+  </div>
+</section>
+
+</main>
+<footer>A companion to the <a href="spanish_kids.html">kids' Spanish page</a> — go <a href="index.html">home</a>.</footer>
+
+<script>
+/* ================= AUDIO CORE ================= */
+/* Turn Spanish text into the same filename generate_audio.py would use.
+   Keep this in sync with slugify() in generate_audio.py. */
+function slugify(text){
+  return text.toString().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[¿¡?!.,;:"'()]/g,'')
+    .trim()
+    .replace(/[\s/]+/g,'-')
+    .replace(/-+/g,'-')
+    .replace(/^-|-$/g,'');
+}
+/* speak(): tries a pre-generated Google Cloud TTS mp3 first (audio/es/<slug>.mp3);
+   if it's missing or fails, falls back to the browser's own voice so nothing
+   ever breaks even for text (like the time widget) that can't be pre-generated. */
+function speak(text){
+  if(!text) return;
+  const id = slugify(text);
+  let fellBack = false;
+  const audio = new Audio(`audio/es/${id}.mp3`);
+  const fallback = ()=>{ if(!fellBack){ fellBack = true; speakLive(text); } };
+  audio.addEventListener('error', fallback);
+  audio.play().catch(fallback);
+}
+function speakLive(text){
+  if(!('speechSynthesis' in window)){ return; }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang='es-ES'; u.rate=0.88;
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = localStorage.getItem('preferredSpanishVoice');
+  let voice = voices.find(v=>v.name===preferred);
+  if(!voice) voice = voices.find(v=>v.lang.toLowerCase().startsWith('es') && /female|mujer|mónica|monica|paulina|lucia|elvira|helena|marisol/i.test(v.name));
+  if(!voice) voice = voices.find(v=>v.lang.toLowerCase()==='es-es');
+  if(!voice) voice = voices.find(v=>v.lang.toLowerCase().startsWith('es'));
+  if(voice) u.voice = voice;
+  window.speechSynthesis.speak(u);
+}
+function populateVoices(){
+  const sel = document.getElementById('voiceSelect');
+  if(!sel || !('speechSynthesis' in window)) return;
+  const voices = window.speechSynthesis.getVoices().filter(v=>v.lang.toLowerCase().startsWith('es'));
+  sel.innerHTML='';
+  if(voices.length===0){ const o=document.createElement('option'); o.textContent='(loading voices…)'; sel.appendChild(o); return; }
+  voices.forEach(v=>{ const o=document.createElement('option'); o.value=v.name; o.textContent=v.name+' ('+v.lang+')'; sel.appendChild(o); });
+  const saved = localStorage.getItem('preferredSpanishVoice');
+  if(saved && voices.some(v=>v.name===saved)) sel.value = saved;
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = populateVoices; populateVoices(); }
+document.getElementById('voiceSelect').addEventListener('change', e=>localStorage.setItem('preferredSpanishVoice', e.target.value));
+
+/* Delegated handler: any <button class="say" data-text="..."> anywhere works,
+   including ones inserted dynamically (context blocks, time widget, etc). */
+document.body.addEventListener('click', e=>{
+  const say = e.target.closest('.say');
+  if(say){ speak(say.dataset.text); }
+});
+
+/* ---------------- POINTS ---------------- */
+const PT_KEY = 'adultSpanishPoints';
+function getPts(){ return parseInt(localStorage.getItem(PT_KEY)||'0',10); }
+function addPts(n){ localStorage.setItem(PT_KEY, String(getPts()+n)); document.getElementById('ptCount').textContent = getPts(); }
+document.getElementById('ptCount').textContent = getPts();
+
+/* ---------------- GLOSSARY ---------------- */
+const GLOSS_KEY = 'adultSpanishGlossary';
+function getGloss(){ try{ return JSON.parse(localStorage.getItem(GLOSS_KEY)||'[]'); }catch(e){ return []; } }
+function saveGloss(list){ localStorage.setItem(GLOSS_KEY, JSON.stringify(list)); }
+function toggleGloss(es, en){
+  let list = getGloss();
+  const idx = list.findIndex(x=>x.es===es);
+  if(idx>-1){ list.splice(idx,1); } else { list.push({es,en}); addPts(1); }
+  saveGloss(list);
+  document.querySelectorAll('.bm').forEach(b=>{ if(b.dataset.es===es) b.classList.toggle('saved', idx===-1); });
+  renderGlossary();
+}
+function renderGlossary(){
+  const grid = document.getElementById('glossaryGrid');
+  const list = getGloss();
+  grid.innerHTML='';
+  list.forEach(item=>{
+    const div = document.createElement('div');
+    div.className='vocab-item';
+    div.innerHTML = `<span class="txt"><span class="es">${item.es}</span><span class="en">${item.en}</span></span>
+      <span class="btns"><button class="say" data-text="${item.es}">🔊</button><button class="bm saved" data-es="${item.es}" data-en="${item.en}">🔖</button></span>`;
+    grid.appendChild(div);
+  });
+  document.getElementById('noGlossary').style.display = list.length? 'none':'block';
+}
+function renderVocabGrid(elId, items){
+  const grid = document.getElementById(elId);
+  if(!grid) return;
+  const saved = getGloss().map(g=>g.es);
+  grid.innerHTML='';
+  items.forEach(item=>{
+    const div = document.createElement('div');
+    div.className='vocab-item';
+    div.innerHTML = `<span class="txt"><span class="es">${item.es}</span><span class="en">${item.en}</span></span>
+      <span class="btns"><button class="say" data-text="${item.es}">🔊</button><button class="bm ${saved.includes(item.es)?'saved':''}" data-es="${item.es}" data-en="${item.en}">🔖</button></span>`;
+    grid.appendChild(div);
+  });
+}
+document.body.addEventListener('click', e=>{
+  const bm = e.target.closest('.bm');
+  if(bm){ toggleGloss(bm.dataset.es, bm.dataset.en); }
+});
+
+/* ---------------- "ON THIS PAGE" TABLE (with audio) ---------------- */
+const ROADMAP = [
+  {es:'Pronunciación', en:'How letters sound, and where the stress falls'},
+  {es:'Género y artículos', en:'Why nouns are "masculine" or "feminine", and el/la/un/una'},
+  {es:'Pronombres', en:"Subject pronouns, and Spanish's two verbs \"to be\""},
+  {es:'Presente', en:'Conjugating regular and key irregular verbs'},
+  {es:'Estructuras', en:'Questions, adjective agreement, possessives'},
+  {es:'Frases y saludos', en:'Everyday expressions, tú vs. usted'},
+  {es:'Números, fechas y horas', en:'Counting, dates, and telling the time'},
+  {es:'Colores, animales, familia, comida', en:'The vocabulary side, at adult depth'},
+  {es:'Ejercicios', en:'Gap-fill, matching, error correction — with scoring'},
+  {es:'Mi glosario', en:"Everything you've bookmarked"},
+];
+(function renderRoadmap(){
+  const table = document.getElementById('onThisPageTable');
+  ROADMAP.forEach(r=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><strong class="es">${r.es}</strong> <button class="say sm" data-text="${r.es}">🔊</button></td><td>${r.en}</td>`;
+    table.appendChild(tr);
+  });
+})();
+
+/* ================= NUMBER / DATE / TIME ENGINE ================= */
+const ONES_W = ['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve'];
+const TEENS_W = ['diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve'];
+const TWENTIES_W = ['veinte','veintiuno','veintidós','veintitrés','veinticuatro','veinticinco','veintiséis','veintisiete','veintiocho','veintinueve'];
+const TENS_W = {3:'treinta',4:'cuarenta',5:'cincuenta',6:'sesenta',7:'setenta',8:'ochenta',9:'noventa'};
+const HUNDREDS_W = {1:'ciento',2:'doscientos',3:'trescientos',4:'cuatrocientos',5:'quinientos',6:'seiscientos',7:'setecientos',8:'ochocientos',9:'novecientos'};
+const MONTH_NAMES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function numWord(n){
+  if(n===0) return 'cero';
+  if(n<10) return ONES_W[n];
+  if(n<20) return TEENS_W[n-10];
+  if(n<30) return TWENTIES_W[n-20];
+  const t = Math.floor(n/10), o = n%10;
+  if(o===0) return TENS_W[t];
+  return TENS_W[t] + ' y ' + ONES_W[o];
+}
+function yearWord(y){
+  const thousands = Math.floor(y/1000);
+  const rem = y%1000;
+  const hundreds = Math.floor(rem/100);
+  const remAfter = rem%100;
+  const parts = [];
+  if(thousands>0) parts.push(thousands===1 ? 'mil' : numWord(thousands)+' mil');
+  if(hundreds>0) parts.push(hundreds===1 && remAfter===0 ? 'cien' : HUNDREDS_W[hundreds]);
+  if(remAfter>0) parts.push(numWord(remAfter));
+  return parts.join(' ');
+}
+function dayWord(d){ return d===1 ? 'primero' : numWord(d); }
+function dateWord(day, monthIdx, year){ return `el ${dayWord(day)} de ${MONTH_NAMES[monthIdx]} de ${yearWord(year)}`; }
+
+const HOUR_NAMES = ['','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce'];
+function periodSuffix(H){
+  if(H<=5) return 'de la madrugada';
+  if(H<=11) return 'de la mañana';
+  if(H===12) return 'del mediodía';
+  if(H<=18) return 'de la tarde';
+  return 'de la noche';
+}
+function computeTimePhrase(H, M){
+  if(M===0 && H===0) return {main:'Es medianoche.', alt:'', en:"It's 12:00 AM."};
+  if(M===0 && H===12) return {main:'Es mediodía.', alt:'', en:"It's 12:00 PM."};
+  const h12 = H%12===0 ? 12 : H%12;
+  const suffix = periodSuffix(H);
+  const verb = h12===1 ? 'Es la' : 'Son las';
+  const hourWord = HOUR_NAMES[h12];
+  let main, alt = '';
+  if(M===0){ main = `${verb} ${hourWord} ${suffix}.`; }
+  else if(M===15){ main = `${verb} ${hourWord} y cuarto ${suffix}.`; }
+  else if(M===30){ main = `${verb} ${hourWord} y media ${suffix}.`; }
+  else if(M<30){ main = `${verb} ${hourWord} y ${numWord(M)} ${suffix}.`; }
+  else {
+    const nextH12 = h12===12 ? 1 : h12+1;
+    const nextVerb = nextH12===1 ? 'Es la' : 'Son las';
+    const nextWord = HOUR_NAMES[nextH12];
+    const remainder = 60-M;
+    main = (M===45)
+      ? `${nextVerb} ${nextWord} menos cuarto ${suffix}.`
+      : `${nextVerb} ${nextWord} menos ${numWord(remainder)} ${suffix}.`;
+    alt = `también: ${verb} ${hourWord} y ${numWord(M)} ${suffix}.`;
+  }
+  const ampm = H<12 ? 'AM' : 'PM';
+  const en = `It's ${h12}:${String(M).padStart(2,'0')} ${ampm}.`;
+  return {main, alt, en};
+}
+
+/* Time widget wiring */
+let widgetH = 14, widgetM = 35;
+function renderTimeWidget(){
+  document.getElementById('digitalTime24').textContent = `${String(widgetH).padStart(2,'0')}:${String(widgetM).padStart(2,'0')}`;
+  const h12 = widgetH%12===0 ? 12 : widgetH%12;
+  const ampm = widgetH<12 ? 'AM' : 'PM';
+  document.getElementById('digitalTime12').textContent = `${h12}:${String(widgetM).padStart(2,'0')} ${ampm}`;
+  const {main, alt, en} = computeTimePhrase(widgetH, widgetM);
+  document.getElementById('timePhraseMain').textContent = main;
+  document.getElementById('timePhraseAlt').textContent = alt;
+  document.getElementById('timePhraseEn').textContent = en;
+  document.getElementById('timeSayBtn').dataset.text = main;
+}
+document.getElementById('hourUp').addEventListener('click', ()=>{ widgetH=(widgetH+1)%24; renderTimeWidget(); });
+document.getElementById('hourDown').addEventListener('click', ()=>{ widgetH=(widgetH+23)%24; renderTimeWidget(); });
+document.getElementById('minUp').addEventListener('click', ()=>{ widgetM+=5; if(widgetM>=60){ widgetM=0; widgetH=(widgetH+1)%24; } renderTimeWidget(); });
+document.getElementById('minDown').addEventListener('click', ()=>{ widgetM-=5; if(widgetM<0){ widgetM=55; widgetH=(widgetH+23)%24; } renderTimeWidget(); });
+renderTimeWidget();
+
+/* Date examples */
+document.getElementById('dateEx1').textContent = dateWord(7,0,1998) + ' ';
+document.getElementById('dateEx2').textContent = dateWord(1,4,2000) + ' ';
+document.getElementById('dateEx3').textContent = dateWord(21,7,1500) + ' ';
+(function(){
+  const today = new Date();
+  const txt = dateWord(today.getDate(), today.getMonth(), today.getFullYear());
+  document.getElementById('dateToday').textContent = txt + ' ';
+})();
+['dateEx1','dateEx2','dateEx3','dateToday'].forEach(id=>{
+  const el = document.getElementById(id);
+  const btn = document.createElement('button');
+  btn.className='say sm'; btn.dataset.text = el.textContent.trim(); btn.textContent='🔊';
+  el.appendChild(btn);
+});
+
+/* ================= VOCAB DATA ================= */
+const VOWELS = [
+  {es:'a — como en "casa"', en:'as in father'},
+  {es:'e — como en "mesa"', en:'as in met'},
+  {es:'i — como en "sí"', en:'as in machine'},
+  {es:'o — como en "sol"', en:'as in more'},
+  {es:'u — como en "luna"', en:'as in food'},
+];
+const QUESTIONS = [
+  {es:'¿Qué?', en:'What?'}, {es:'¿Quién?', en:'Who?'}, {es:'¿Cuándo?', en:'When?'},
+  {es:'¿Dónde?', en:'Where?'}, {es:'¿Cómo?', en:'How?'}, {es:'¿Por qué?', en:'Why?'},
+  {es:'¿Cuánto/a?', en:'How much?'}, {es:'¿Cuál?', en:'Which?'},
+];
+const PHRASES = [
+  {es:'¿Qué tal?', en:"How's it going? (informal)"},
+  {es:'Mucho gusto.', en:'Nice to meet you.'},
+  {es:'¿De dónde eres?', en:'Where are you from? (informal)'},
+  {es:'¿De dónde es usted?', en:'Where are you from? (formal)'},
+  {es:'No entiendo.', en:"I don't understand."},
+  {es:'¿Puede repetir, por favor?', en:'Could you repeat that, please? (formal)'},
+  {es:'¿Cuánto cuesta?', en:'How much does it cost?'},
+  {es:'No hablo mucho español todavía.', en:"I don't speak much Spanish yet."},
+  {es:'¿Hablas inglés?', en:'Do you speak English?'},
+  {es:'Perdón, no entendí.', en:"Sorry, I didn't understand."},
+  {es:'Encantado de conocerte.', en:'Pleased to meet you.'},
+];
+const NUMBERS = [
+  {es:'uno',en:'1'},{es:'dos',en:'2'},{es:'tres',en:'3'},{es:'cuatro',en:'4'},{es:'cinco',en:'5'},
+  {es:'seis',en:'6'},{es:'siete',en:'7'},{es:'ocho',en:'8'},{es:'nueve',en:'9'},{es:'diez',en:'10'},
+];
+const TEENS = [
+  {es:'once',en:'11'},{es:'doce',en:'12'},{es:'trece',en:'13'},{es:'catorce',en:'14'},{es:'quince',en:'15'},
+  {es:'dieciséis',en:'16'},{es:'diecisiete',en:'17'},{es:'dieciocho',en:'18'},{es:'diecinueve',en:'19'},
+];
+const TENS = [
+  {es:'diez',en:'10'},{es:'veinte',en:'20'},{es:'treinta',en:'30'},{es:'cuarenta',en:'40'},
+  {es:'cincuenta',en:'50'},{es:'sesenta',en:'60'},{es:'setenta',en:'70'},{es:'ochenta',en:'80'},
+  {es:'noventa',en:'90'},{es:'cien',en:'100'},
+];
+const DAYS = [
+  {es:'lunes',en:'Monday'},{es:'martes',en:'Tuesday'},{es:'miércoles',en:'Wednesday'},
+  {es:'jueves',en:'Thursday'},{es:'viernes',en:'Friday'},{es:'sábado',en:'Saturday'},{es:'domingo',en:'Sunday'},
+];
+const MONTHS = MONTH_NAMES.map((m,i)=>({es:m, en:['January','February','March','April','May','June','July','August','September','October','November','December'][i]}));
+
+const COLORS_ADULT = [
+  {es:'rojo',en:'red'},{es:'azul',en:'blue'},{es:'amarillo',en:'yellow'},{es:'verde',en:'green'},
+  {es:'naranja',en:'orange'},{es:'morado',en:'purple'},{es:'rosa',en:'pink'},{es:'negro',en:'black'},
+  {es:'blanco',en:'white'},{es:'marrón',en:'brown'},{es:'gris',en:'gray'},{es:'dorado',en:'gold'},
+  {es:'plateado',en:'silver'},{es:'turquesa',en:'turquoise'},{es:'beige',en:'beige'},
+];
+const COLOR_SENTENCES = [
+  {es:'El cielo es azul.', en:'The sky is blue.'},
+  {es:'La hierba es verde.', en:'The grass is green.'},
+  {es:'Mis zapatos son negros.', en:'My shoes are black.'},
+  {es:'La flor es rosa.', en:'The flower is pink.'},
+];
+const ANIMALS_ADULT = [
+  {es:'perro',en:'dog'},{es:'gato',en:'cat'},{es:'pájaro',en:'bird'},{es:'pez',en:'fish'},
+  {es:'caballo',en:'horse'},{es:'vaca',en:'cow'},{es:'cerdo',en:'pig'},{es:'oveja',en:'sheep'},
+  {es:'león',en:'lion'},{es:'elefante',en:'elephant'},{es:'mono',en:'monkey'},{es:'conejo',en:'rabbit'},
+  {es:'oso',en:'bear'},{es:'rana',en:'frog'},{es:'tortuga',en:'turtle'},{es:'ratón',en:'mouse'},
+  {es:'gallina',en:'hen'},{es:'pato',en:'duck'},{es:'araña',en:'spider'},{es:'abeja',en:'bee'},{es:'serpiente',en:'snake'},
+];
+const ANIMAL_SENTENCES = [
+  {es:'El perro corre en el parque.', en:'The dog runs in the park.'},
+  {es:'Los pájaros cantan por la mañana.', en:'The birds sing in the morning.'},
+  {es:'La araña tiene ocho patas.', en:'The spider has eight legs.'},
+];
+const FAMILY_ADULT = [
+  {es:'madre',en:'mother'},{es:'padre',en:'father'},{es:'hermano',en:'brother'},{es:'hermana',en:'sister'},
+  {es:'abuelo',en:'grandfather'},{es:'abuela',en:'grandmother'},{es:'bebé',en:'baby'},{es:'familia',en:'family'},
+  {es:'tío',en:'uncle'},{es:'tía',en:'aunt'},{es:'primo',en:'cousin (m)'},{es:'prima',en:'cousin (f)'},
+  {es:'esposo',en:'husband'},{es:'esposa',en:'wife'},{es:'hijo',en:'son'},{es:'hija',en:'daughter'},
+  {es:'sobrino',en:'nephew'},{es:'sobrina',en:'niece'},{es:'suegro',en:'father-in-law'},{es:'suegra',en:'mother-in-law'},
+  {es:'nieto',en:'grandson'},{es:'nieta',en:'granddaughter'},
+];
+const FAMILY_SENTENCES = [
+  {es:'Mi madre es médica.', en:'My mother is a doctor.'},
+  {es:'Tengo dos hijos y una hija.', en:'I have two sons and one daughter.'},
+  {es:'Mi familia es bastante grande.', en:'My family is quite big.'},
+];
+const FOOD_ADULT = [
+  {es:'manzana',en:'apple'},{es:'plátano',en:'banana'},{es:'pan',en:'bread'},{es:'agua',en:'water'},
+  {es:'leche',en:'milk'},{es:'queso',en:'cheese'},{es:'pizza',en:'pizza'},{es:'pollo',en:'chicken'},
+  {es:'arroz',en:'rice'},{es:'huevo',en:'egg'},{es:'sopa',en:'soup'},{es:'ensalada',en:'salad'},
+  {es:'carne',en:'meat'},{es:'pescado',en:'fish (food)'},{es:'verduras',en:'vegetables'},{es:'fruta',en:'fruit'},
+  {es:'café',en:'coffee'},{es:'té',en:'tea'},{es:'vino',en:'wine'},{es:'desayuno',en:'breakfast'},
+  {es:'almuerzo',en:'lunch'},{es:'cena',en:'dinner'},
+];
+const FOOD_SENTENCES = [
+  {es:'Desayuno pan con queso.', en:'I have bread with cheese for breakfast.'},
+  {es:'Ceno pescado con verduras.', en:'I have fish with vegetables for dinner.'},
+  {es:'Me gusta el café por la mañana.', en:'I like coffee in the morning.'},
+];
+
+function renderSentenceList(elId, sentences){
+  const wrap = document.getElementById(elId);
+  if(!wrap) return;
+  wrap.innerHTML = sentences.map(s=>`
+    <div class="expr-item"><span><span class="es">${s.es}</span> <button class="say sm" data-text="${s.es}">🔊</button></span><span class="en">${s.en}</span></div>
+  `).join('');
+}
+
+renderVocabGrid('vowelGrid', VOWELS);
+renderVocabGrid('questionGrid', QUESTIONS);
+renderVocabGrid('phraseGrid', PHRASES);
+renderVocabGrid('numberGrid', NUMBERS);
+renderVocabGrid('teenGrid', TEENS);
+renderVocabGrid('tensGrid', TENS);
+renderVocabGrid('dayGrid', DAYS);
+renderVocabGrid('monthGrid', MONTHS);
+renderVocabGrid('colorGridAdult', COLORS_ADULT);
+renderVocabGrid('animalGridAdult', ANIMALS_ADULT);
+renderVocabGrid('familyGridAdult', FAMILY_ADULT);
+renderVocabGrid('foodGridAdult', FOOD_ADULT);
+renderSentenceList('colorSentences', COLOR_SENTENCES);
+renderSentenceList('animalSentences', ANIMAL_SENTENCES);
+renderSentenceList('familySentences', FAMILY_SENTENCES);
+renderSentenceList('foodSentences', FOOD_SENTENCES);
+renderGlossary();
+
+/* ================= "IN CONTEXT" BLOCKS (expressions, text, dialogue) ================= */
+const SECTION_EXTRAS = {
+  pron: {
+    expresiones: [
+      {es:'¿Cómo se dice esto en español?', en:'How do you say this in Spanish?'},
+      {es:'¿Cómo se escribe tu nombre?', en:'How do you spell your name?'},
+      {es:'¿Puedes repetir eso, por favor?', en:'Can you repeat that, please?'},
+      {es:'Habla más despacio, por favor.', en:'Speak more slowly, please.'},
+      {es:'No sé pronunciar esta palabra.', en:"I don't know how to pronounce this word."},
+    ],
+    texto: {
+      es: ['Carlos está aprendiendo a pronunciar palabras nuevas en español.', 'Cada letra casi siempre suena igual, así que después de unas semanas ya puede leer casi cualquier palabra en voz alta.', "Todavía le cuesta un poco la 'rr', pero practica todos los días."],
+      en: 'Carlos is learning to pronounce new words in Spanish. Each letter almost always sounds the same, so after a few weeks he can already read almost any word aloud. He still finds the "rr" a bit hard, but he practices every day.'
+    },
+    dialogo: {
+      title: 'En la clase de español',
+      lines: [
+        {who:'A', es:'¿Cómo se pronuncia esta palabra?', en:'How do you pronounce this word?'},
+        {who:'B', es:'Se pronuncia con una erre fuerte. Es la palabra "perro".', en:'It\'s pronounced with a strong rolled r. It\'s the word "perro".'},
+        {who:'A', es:'Ah, gracias. Es difícil para mí.', en:"Ah, thanks. It's hard for me."},
+        {who:'B', es:'No te preocupes, con práctica sale bien.', en:"Don't worry, with practice it'll come out right."},
+      ]
+    }
+  },
+  genero: {
+    expresiones: [
+      {es:'¿Es masculino o femenino?', en:'Is it masculine or feminine?'},
+      {es:'No sé el género de esta palabra.', en:"I don't know the gender of this word."},
+      {es:'¿Se dice "el" o "la"?', en:'Do you say "el" or "la"?'},
+    ],
+    texto: {
+      es: ['En español, cada sustantivo tiene un género: masculino o femenino.', "Por ejemplo, 'el libro' es masculino y 'la mesa' es femenina.", 'A veces el género no es lógico, así que hay que aprenderlo con cada palabra nueva.'],
+      en: 'In Spanish, every noun has a gender: masculine or feminine. For example, "el libro" is masculine and "la mesa" is feminine. Sometimes the gender isn\'t logical, so you have to learn it with each new word.'
+    },
+    dialogo: {
+      title: 'Comprando muebles',
+      lines: [
+        {who:'A', es:'Necesito una mesa nueva para la cocina.', en:'I need a new table for the kitchen.'},
+        {who:'B', es:'¿Prefieres una mesa grande o pequeña?', en:'Do you prefer a big or small table?'},
+        {who:'A', es:'Prefiero una mesa pequeña, el apartamento es pequeño.', en:'I prefer a small table, the apartment is small.'},
+        {who:'B', es:'Tenemos una mesa perfecta para ti.', en:'We have a perfect table for you.'},
+      ]
+    }
+  },
+  pronombres: {
+    expresiones: [
+      {es:'¿Quién eres tú?', en:'Who are you?'},
+      {es:'¿De dónde es usted?', en:'Where are you from? (formal)'},
+      {es:'¿Cómo estás hoy?', en:'How are you today?'},
+      {es:'Estoy un poco cansado.', en:"I'm a bit tired."},
+    ],
+    texto: {
+      es: ['Ana es española, pero ahora vive en Polonia.', 'Ella es profesora y está muy contenta con su nueva vida.', 'Hoy está un poco cansada porque trabajó mucho, pero está feliz.'],
+      en: 'Ana is Spanish, but now she lives in Poland. She is a teacher and is very happy with her new life. Today she is a bit tired because she worked a lot, but she is happy.'
+    },
+    dialogo: {
+      title: 'Presentaciones',
+      lines: [
+        {who:'A', es:'Hola, ¿cómo te llamas?', en:"Hi, what's your name?"},
+        {who:'B', es:'Me llamo Marek. ¿Y tú?', en:'My name is Marek. And you?'},
+        {who:'A', es:'Yo soy Ana. ¿De dónde eres?', en:"I'm Ana. Where are you from?"},
+        {who:'B', es:'Soy de Polonia, pero ahora estoy en España.', en:"I'm from Poland, but now I'm in Spain."},
+      ]
+    }
+  },
+  presente: {
+    expresiones: [
+      {es:'¿Qué haces los fines de semana?', en:'What do you do on weekends?'},
+      {es:'Tengo que trabajar mañana.', en:'I have to work tomorrow.'},
+      {es:'¿Quieres comer algo?', en:'Do you want to eat something?'},
+      {es:'Voy a estudiar español.', en:"I'm going to study Spanish."},
+    ],
+    texto: {
+      es: ['Todos los días, Marek se levanta temprano y desayuna.', 'Después, trabaja en una oficina y come con sus compañeros.', 'Por la noche, estudia español durante media hora porque quiere hablar bien con su familia.'],
+      en: 'Every day, Marek gets up early and has breakfast. Afterwards, he works in an office and eats with his colleagues. At night, he studies Spanish for half an hour because he wants to speak well with his family.'
+    },
+    dialogo: {
+      title: 'Planes para el fin de semana',
+      lines: [
+        {who:'A', es:'¿Qué haces el sábado?', en:'What are you doing on Saturday?'},
+        {who:'B', es:'Voy a visitar a mis padres. ¿Y tú?', en:"I'm going to visit my parents. And you?"},
+        {who:'A', es:'Tengo que limpiar la casa, pero después quiero descansar.', en:'I have to clean the house, but afterwards I want to rest.'},
+        {who:'B', es:'¡Buena suerte con la limpieza!', en:'Good luck with the cleaning!'},
+      ]
+    }
+  },
+  estructuras: {
+    expresiones: [
+      {es:'¿Cuál es tu color favorito?', en:"What's your favorite color?"},
+      {es:'¿Cuántos años tienes?', en:'How old are you?'},
+      {es:'Mi casa es más grande que la tuya.', en:'My house is bigger than yours.'},
+      {es:'¿De quién es este libro?', en:'Whose book is this?'},
+    ],
+    texto: {
+      es: ['Mi hermana tiene una casa muy bonita y grande.', 'Sus vecinos son simpáticos y su jardín tiene flores de muchos colores.', 'Nuestra familia visita su casa cada verano.'],
+      en: 'My sister has a very nice, big house. Her neighbors are friendly and her garden has flowers of many colors. Our family visits her house every summer.'
+    },
+    dialogo: {
+      title: 'Describiendo cosas',
+      lines: [
+        {who:'A', es:'¿De quién es este coche rojo?', en:"Whose red car is this?"},
+        {who:'B', es:'Es de mi vecino. Es muy rápido.', en:"It's my neighbor's. It's very fast."},
+        {who:'A', es:'¿Cuántos coches tiene?', en:'How many cars does he have?'},
+        {who:'B', es:'Tiene dos coches y una moto pequeña.', en:'He has two cars and a small motorcycle.'},
+      ]
+    }
+  },
+  frases: {
+    expresiones: [
+      {es:'¿Hablas inglés?', en:'Do you speak English?'},
+      {es:'Perdón, no entendí.', en:"Sorry, I didn't understand."},
+      {es:'Encantado de conocerte.', en:'Pleased to meet you.'},
+    ],
+    texto: {
+      es: ["Cuando Ana conoce a alguien nuevo, siempre dice 'Mucho gusto' y pregunta '¿De dónde eres?'.", "Si no entiende algo, dice '¿Puede repetir, por favor?' porque es más educado que quedarse callada."],
+      en: 'When Ana meets someone new, she always says "Nice to meet you" and asks "Where are you from?" If she doesn\'t understand something, she says "Could you repeat, please?" because it\'s more polite than staying silent.'
+    },
+    dialogo: {
+      title: 'En una fiesta',
+      lines: [
+        {who:'A', es:'Hola, mucho gusto. Me llamo Ana.', en:'Hi, nice to meet you. My name is Ana.'},
+        {who:'B', es:'Encantado, Ana. Yo soy Tomás.', en:"Pleased to meet you, Ana. I'm Tomás."},
+        {who:'A', es:'¿De dónde eres, Tomás?', en:'Where are you from, Tomás?'},
+        {who:'B', es:'Soy de México. ¿Y tú?', en:"I'm from Mexico. And you?"},
+      ]
+    }
+  },
+  numeros: {
+    expresiones: [
+      {es:'¿Qué hora es?', en:'What time is it?'},
+      {es:'¿Qué día es hoy?', en:"What day is it today?"},
+      {es:'¿Cuál es la fecha de hoy?', en:"What's today's date?"},
+      {es:'Mi cumpleaños es en marzo.', en:'My birthday is in March.'},
+    ],
+    texto: {
+      es: ['El cumpleaños de Marek es el siete de enero de mil novecientos noventa y ocho.', "Cada año celebra con su familia y siempre pregunta: '¿Qué hora es?' porque quiere llegar a tiempo a la fiesta."],
+      en: "Marek's birthday is January 7, 1998. Every year he celebrates with his family and always asks: \"What time is it?\" because he wants to arrive on time to the party."
+    },
+    dialogo: {
+      title: 'Quedando con un amigo',
+      lines: [
+        {who:'A', es:'¿A qué hora quedamos mañana?', en:'What time shall we meet tomorrow?'},
+        {who:'B', es:'¿Qué tal a las cuatro y media de la tarde?', en:'How about at half past four in the afternoon?'},
+        {who:'A', es:'Perfecto. ¿Y qué fecha es tu cumpleaños?', en:"Perfect. And what date is your birthday?"},
+        {who:'B', es:'Es el veinte de mayo.', en:"It's the twentieth of May."},
+      ]
+    }
+  },
+  colores: {
+    expresiones: [
+      {es:'¿De qué color es esto?', en:'What color is this?'},
+      {es:'Mi color favorito es el azul.', en:'My favorite color is blue.'},
+      {es:'¿Te gusta el rojo o el verde?', en:'Do you like red or green?'},
+    ],
+    texto: {
+      es: ['A Sofía le encanta el color rosa.', 'Su mochila es rosa, su bicicleta es rosa y hasta su gato tiene un collar rosa.', 'Su hermano prefiere el azul y el negro.'],
+      en: 'Sofía loves the color pink. Her backpack is pink, her bicycle is pink, and even her cat has a pink collar. Her brother prefers blue and black.'
+    },
+    dialogo: {
+      title: 'Colores favoritos',
+      lines: [
+        {who:'A', es:'¿Cuál es tu color favorito?', en:"What's your favorite color?"},
+        {who:'B', es:'Me gusta el verde. ¿Y el tuyo?', en:'I like green. And yours?'},
+        {who:'A', es:'A mí me gusta el amarillo, es muy alegre.', en:'I like yellow, it\'s very cheerful.'},
+        {who:'B', es:'Sí, el amarillo es como el sol.', en:'Yes, yellow is like the sun.'},
+      ]
+    }
+  },
+  animales: {
+    expresiones: [
+      {es:'¿Qué animal es tu favorito?', en:'What is your favorite animal?'},
+      {es:'Tengo un perro y un gato en casa.', en:'I have a dog and a cat at home.'},
+      {es:'¿Te dan miedo las arañas?', en:'Are you scared of spiders?'},
+    ],
+    texto: {
+      es: ['En la granja de mis abuelos hay muchos animales: vacas, ovejas, gallinas y un caballo muy viejo.', 'Por las mañanas, el gallo canta y despierta a todo el mundo.'],
+      en: "On my grandparents' farm there are many animals: cows, sheep, hens, and a very old horse. In the mornings, the rooster crows and wakes everyone up."
+    },
+    dialogo: {
+      title: 'Mascotas',
+      lines: [
+        {who:'A', es:'¿Tienes mascotas en casa?', en:'Do you have pets at home?'},
+        {who:'B', es:'Sí, tengo dos gatos y un pez. ¿Y tú?', en:'Yes, I have two cats and a fish. And you?'},
+        {who:'A', es:'Yo tengo un perro. Se llama Rex y es muy grande.', en:'I have a dog. His name is Rex and he is very big.'},
+        {who:'B', es:'¡Qué bonito! A mí me encantan los perros.', en:'How lovely! I love dogs.'},
+      ]
+    }
+  },
+  familia: {
+    expresiones: [
+      {es:'¿Cuántos hermanos tienes?', en:'How many siblings do you have?'},
+      {es:'Vivo con mis padres y mi hermana.', en:'I live with my parents and my sister.'},
+      {es:'Mi familia es muy grande.', en:'My family is very big.'},
+    ],
+    texto: {
+      es: ['Mi familia es bastante grande.', 'Tengo dos hermanos, cuatro tíos y ocho primos.', 'Cada Navidad, toda la familia se reúne en casa de mis abuelos.'],
+      en: 'My family is quite big. I have two brothers, four uncles/aunts, and eight cousins. Every Christmas, the whole family gathers at my grandparents\' house.'
+    },
+    dialogo: {
+      title: 'Hablando de la familia',
+      lines: [
+        {who:'A', es:'¿Cuántas personas hay en tu familia?', en:'How many people are in your family?'},
+        {who:'B', es:'Somos cinco: mis padres, mis dos hermanos y yo. ¿Y la tuya?', en:'We are five: my parents, my two siblings, and me. And yours?'},
+        {who:'A', es:'La mía es pequeña, solo mi madre y yo.', en:"Mine is small, just my mother and me."},
+        {who:'B', es:'Ah, ¡pero seguro que es muy unida!', en:"Ah, but I'm sure it's very close-knit!"},
+      ]
+    }
+  },
+  comida: {
+    expresiones: [
+      {es:'¿Qué quieres comer?', en:'What do you want to eat?'},
+      {es:'Tengo mucha hambre.', en:"I'm very hungry."},
+      {es:'¿Te gusta la comida picante?', en:'Do you like spicy food?'},
+    ],
+    texto: {
+      es: ['Todos los domingos, mi familia prepara una comida especial: sopa, pollo con arroz y, de postre, fruta fresca.', 'A mi hermano le encanta el pan con queso.'],
+      en: 'Every Sunday, my family prepares a special meal: soup, chicken with rice, and, for dessert, fresh fruit. My brother loves bread with cheese.'
+    },
+    dialogo: {
+      title: 'En un restaurante',
+      lines: [
+        {who:'A', es:'¿Qué vas a pedir?', en:'What are you going to order?'},
+        {who:'B', es:'Quiero pizza y una ensalada. ¿Y tú?', en:'I want pizza and a salad. And you?'},
+        {who:'A', es:'Yo prefiero el pescado con arroz.', en:'I prefer fish with rice.'},
+        {who:'B', es:'Buena elección. ¿Compartimos el postre?', en:'Good choice. Shall we share dessert?'},
+      ]
+    }
+  },
+};
+
+function renderExtras(tabId){
+  const data = SECTION_EXTRAS[tabId];
+  const container = document.getElementById('ctx-'+tabId);
+  if(!data || !container) return;
+  const exprHtml = data.expresiones.map(x=>`
+    <div class="expr-item"><span class="es">${x.es}</span> <button class="say sm" data-text="${x.es}">🔊</button><span class="en">${x.en}</span></div>
+  `).join('');
+  const textoHtml = data.texto.es.map(s=>`<span class="text-sentence">${s} <button class="say sm" data-text="${s}">🔊</button></span>`).join(' ');
+  const dialogoHtml = data.dialogo.lines.map(l=>`
+    <div class="dial-line"><span class="dial-who">${l.who}:</span>
+      <div class="dial-bubble ${l.who==='B'?'b':''}">${l.es} <button class="say sm" data-text="${l.es}">🔊</button><span class="en">${l.en}</span></div>
+    </div>
+  `).join('');
+  container.innerHTML = `
+    <h3 style="margin-top:0;">En contexto</h3>
+    <h4 style="margin:16px 0 4px;color:var(--teal-dark);">Expresiones y preguntas</h4>
+    <div class="expr-list">${exprHtml}</div>
+    <h4 style="margin:20px 0 4px;color:var(--teal-dark);">Un texto breve</h4>
+    <div class="text-block"><p>${textoHtml}</p><p class="text-en">${data.texto.en}</p></div>
+    <h4 style="margin:20px 0 4px;color:var(--teal-dark);">Diálogo: ${data.dialogo.title}</h4>
+    <div class="dialogo">${dialogoHtml}</div>
+  `;
+}
+Object.keys(SECTION_EXTRAS).forEach(renderExtras);
+
+/* ---------------- TABS ---------------- */
+const TABS = [
+  {id:'inicio', label:'Inicio'},
+  {id:'pron', label:'Pronunciación'},
+  {id:'genero', label:'Género y artículos'},
+  {id:'pronombres', label:'Pronombres & Ser/Estar'},
+  {id:'presente', label:'Presente'},
+  {id:'estructuras', label:'Estructuras'},
+  {id:'frases', label:'Frases y saludos'},
+  {id:'numeros', label:'Números, fecha, hora'},
+  {id:'colores', label:'Colores'},
+  {id:'animales', label:'Animales'},
+  {id:'familia', label:'Familia'},
+  {id:'comida', label:'Comida'},
+  {id:'ejercicios', label:'Ejercicios'},
+  {id:'glosario', label:'Mi glosario'},
+];
+const tabBar = document.getElementById('tabBar');
+TABS.forEach(t=>{
+  const btn = document.createElement('button');
+  btn.textContent = t.label; btn.dataset.tab = t.id;
+  if(t.id==='inicio') btn.classList.add('active');
+  btn.addEventListener('click', ()=>showPanel(t.id));
+  tabBar.appendChild(btn);
+});
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.dataset.panel===id));
+  document.querySelectorAll('#tabBar button').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+  if(id==='glosario') renderGlossary();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------------- EXERCISES ---------------- */
+const exerciseArea = document.getElementById('exerciseArea');
+document.getElementById('startGap').addEventListener('click', startGap);
+document.getElementById('startMatch').addEventListener('click', startMatchEx);
+document.getElementById('startError').addEventListener('click', startError);
+
+const GAP_QUESTIONS = [
+  {prompt:'Yo ___ profesor. (permanent — a profession)', options:['soy','estoy'], answer:'soy', explain:'Profession is an identity trait, so use ser: Yo soy profesor.'},
+  {prompt:'Ella ___ cansada ahora mismo. (a temporary state)', options:['es','está'], answer:'está', explain:'Being tired is temporary, so use estar: Ella está cansada.'},
+  {prompt:'___ vives? (asking where)', options:['¿Dónde','¿Cuándo'], answer:'¿Dónde', explain:'"Dónde" asks about place: ¿Dónde vives?'},
+  {prompt:'Nosotros ___ español. (hablar, we-form)', options:['hablamos','hablan'], answer:'hablamos', explain:'The nosotros ending for -ar verbs is -amos: hablamos.'},
+  {prompt:'Un coche ___. (red, masculine singular)', options:['rojo','roja'], answer:'rojo', explain:'"Coche" is masculine, so the adjective takes the -o ending: coche rojo.'},
+  {prompt:'___ que estudiar hoy. (I have to)', options:['Tengo','Voy'], answer:'Tengo', explain:'"Tener que + infinitive" means "to have to": Tengo que estudiar.'},
+  {prompt:'La casa de mi amigo es grande. Es ___ casa. (his house)', options:['su','sus'], answer:'su', explain:'"Su" does not change for gender, only for number, and "casa" is singular: su casa.'},
+  {prompt:'Son las tres y ___. (half past)', options:['media','cuarto'], answer:'media', explain:'"Y media" = half past; "menos cuarto" = a quarter to.'},
+  {prompt:'Tengo ___ años. (21, before the noun "años")', options:['veintiún','veintiuno'], answer:'veintiún', explain:'"Veintiuno" shortens to "veintiún" right before a noun: veintiún años.'},
+  {prompt:'Hoy es el ___ de enero. (the 1st)', options:['primero','uno'], answer:'primero', explain:'The 1st of the month is usually "primero" (Spain also accepts "uno").'},
+];
+function startGap(){ runQuiz(shuffle(GAP_QUESTIONS), 'gap'); }
+const ERROR_QUESTIONS = [
+  {prompt:'Which sentence is correct?', options:['Yo tengo veinte años.','Yo soy veinte años.'], answer:'Yo tengo veinte años.', explain:'Age uses "tener" in Spanish ("to have X years"), not "ser" — unlike English "to be" X years old.'},
+  {prompt:'Which sentence is correct?', options:['Ella es en casa.','Ella está en casa.'], answer:'Ella está en casa.', explain:'Location always uses estar: Ella está en casa.'},
+  {prompt:'Which sentence is correct?', options:['Los casas son grandes.','Las casas son grandes.'], answer:'Las casas son grandes.', explain:'"Casa" is feminine, so its article and plural agree: las casas.'},
+  {prompt:'Which sentence is correct?', options:['Tengo que estudio.','Tengo que estudiar.'], answer:'Tengo que estudiar.', explain:'"Tener que" is always followed by an infinitive: estudiar, not a conjugated form.'},
+  {prompt:'Which sentence is correct?', options:['Ella tiene un perro rojo.','Ella tiene un perro roja.'], answer:'Ella tiene un perro rojo.', explain:'"Perro" is masculine, so the adjective takes -o: perro rojo.'},
+  {prompt:'Which sentence is correct?', options:['Son las tres y dieciséis.','Son las tres y diez y seis.'], answer:'Son las tres y dieciséis.', explain:'16 is always written and said as one fused word, dieciséis, never as two separate words.'},
+];
+function startError(){ runQuiz(shuffle(ERROR_QUESTIONS), 'error'); }
+function runQuiz(pool, mode){
+  let index = 0, score = 0;
+  render();
+  function render(){
+    if(index >= pool.length){
+      addPts(score);
+      exerciseArea.innerHTML = `<div class="game-status">You scored ${score} / ${pool.length} — ${score} points added.</div>
+        <button class="btn" id="again">Try again</button>`;
+      document.getElementById('again').addEventListener('click', ()=>runQuiz(shuffle(pool), mode));
+      return;
+    }
+    const q = pool[index];
+    exerciseArea.innerHTML = `<div class="game-status">${mode==='gap'?'Gap fill':'Error correction'} — ${index+1} / ${pool.length} (score: ${score})</div>
+      <p style="margin-bottom:10px;">${q.prompt}</p>
+      <div class="opt-list"></div>
+      <div class="explain" id="explainBox"></div>`;
+    const wrap = exerciseArea.querySelector('.opt-list');
+    shuffle(q.options).forEach(optText=>{
+      const btn = document.createElement('button');
+      btn.textContent = optText;
+      btn.addEventListener('click', ()=>{
+        const correct = optText===q.answer;
+        btn.classList.add(correct?'correct':'wrong');
+        if(correct) score++;
+        [...wrap.children].forEach(b=>b.disabled=true);
+        const eb = document.getElementById('explainBox');
+        eb.textContent = q.explain; eb.classList.add('show');
+        speak(q.answer.replace('¿',''));
+        setTimeout(()=>{ index++; render(); }, 1600);
+      });
+      wrap.appendChild(btn);
+    });
+  }
+}
+
+function startMatchEx(){
+  const pairs = shuffle([
+    {a:'yo', b:'I'}, {a:'tú', b:'you (informal)'}, {a:'nosotros', b:'we'},
+    {a:'soy', b:'I am (identity)'}, {a:'estoy', b:'I am (state/location)'}, {a:'tengo', b:'I have'},
+  ]).slice(0,6);
+  const left = shuffle(pairs.map(p=>({...p, side:'a'})));
+  const right = shuffle(pairs.map(p=>({...p, side:'b'})));
+  let selected = null, matched = 0;
+  exerciseArea.innerHTML = `<div class="game-status">Match the Spanish term to its meaning</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:560px;">
+      <div id="colA" style="display:flex;flex-direction:column;gap:8px;"></div>
+      <div id="colB" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>`;
+  const colA = exerciseArea.querySelector('#colA');
+  const colB = exerciseArea.querySelector('#colB');
+  function makeBtn(text, pair, side){
+    const btn = document.createElement('button');
+    btn.style.cssText = 'text-align:left;padding:10px 14px;border-radius:8px;border:1.5px solid var(--line);background:#fbfaf6;cursor:pointer;font-size:0.95rem;';
+    btn.textContent = text;
+    btn.addEventListener('click', ()=>pick(btn, pair, side));
+    return btn;
+  }
+  left.forEach(p=>colA.appendChild(makeBtn(p.a, p, 'a')));
+  right.forEach(p=>colB.appendChild(makeBtn(p.b, p, 'b')));
+  function pick(btn, pair, side){
+    if(btn.disabled) return;
+    if(!selected){ selected = {btn, pair, side}; btn.style.borderColor='var(--teal)'; return; }
+    if(selected.side===side){ selected.btn.style.borderColor='var(--line)'; selected={btn,pair,side}; btn.style.borderColor='var(--teal)'; return; }
+    if(selected.pair.a===pair.a){
+      selected.btn.style.background='#e3f1e0'; selected.btn.style.borderColor='#5FAE55'; selected.btn.disabled=true;
+      btn.style.background='#e3f1e0'; btn.style.borderColor='#5FAE55'; btn.disabled=true;
+      speak(pair.a);
+      matched++; selected=null;
+      if(matched===pairs.length){ addPts(3); exerciseArea.insertAdjacentHTML('beforeend', '<p class="game-status" style="margin-top:14px;">All matched! 3 points added.</p>'); }
+    } else {
+      btn.style.background='#fbe4e0'; selected.btn.style.background='#fbe4e0';
+      setTimeout(()=>{ btn.style.background='#fbfaf6'; btn.style.borderColor='var(--line)'; selected.btn.style.background='#fbfaf6'; selected.btn.style.borderColor='var(--line)'; selected=null; }, 500);
+    }
+  }
+}
+
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+</script>
+</body>
+</html>
